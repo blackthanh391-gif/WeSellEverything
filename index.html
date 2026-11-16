@@ -4,91 +4,339 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>WeSellEverything</title>
+  <meta name="description" content="WeSellEverything - Discover amazing products around the world.">
+  <title>WeSellEverything | Discover Amazing Products</title>
+
   <style>
-    body {
+    * {
       margin: 0;
-      font-family: Arial, sans-serif;
-      background: #f5f6fa;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+      background: #f5f7fb;
       color: #222;
+      line-height: 1.6;
     }
+
+    /* Header */
     header {
-      background: #172554;
+      background: linear-gradient(135deg, #10234d, #1d4ed8);
       color: white;
-      padding: 25px;
       text-align: center;
+      padding: 42px 20px;
     }
+
+    header h1 {
+      font-size: 36px;
+      margin-bottom: 8px;
+    }
+
+    header p {
+      font-size: 17px;
+      color: #e0eaff;
+    }
+
+    /* Navigation */
     nav {
-      background: #1e40af;
-      padding: 15px;
-      text-align: center;
+      background: #10234d;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 35px;
+      padding: 16px 20px;
+      position: sticky;
+      top: 0;
+      z-index: 100;
     }
+
     nav a {
       color: white;
-      margin: 12px;
       text-decoration: none;
+      font-size: 16px;
+      font-weight: bold;
     }
+
+    nav a:hover {
+      color: #facc15;
+    }
+
+    /* Main content */
     main {
-      max-width: 1000px;
+      max-width: 1200px;
+      width: 92%;
       margin: 35px auto;
-      padding: 20px;
+    }
+
+    /* Welcome section */
+    .welcome {
+      text-align: center;
+      padding: 35px 15px;
+      margin-bottom: 30px;
+    }
+
+    .welcome h2 {
+      color: #17346d;
+      font-size: 30px;
+      margin-bottom: 12px;
+    }
+
+    .welcome p {
+      color: #666;
+      font-size: 17px;
+    }
+
+    /* Categories */
+    #categories {
+      scroll-margin-top: 80px;
+    }
+
+    .section-heading {
+      text-align: center;
+      margin-bottom: 28px;
+    }
+
+    .section-heading h2 {
+      font-size: 29px;
+      color: #17346d;
+      margin-bottom: 8px;
+    }
+
+    .section-heading p {
+      color: #666;
+    }
+
+    .category-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 18px;
+    }
+
+    .category-card {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 105px;
+      padding: 18px;
+      background: white;
+      border: 1px solid #e5eaf3;
+      border-radius: 12px;
+      box-shadow: 0 3px 12px rgba(0, 0, 0, 0.05);
+      text-align: center;
+      font-size: 15px;
+      font-weight: bold;
+      color: #17346d;
+      transition: 0.25s ease;
+    }
+
+    .category-card:hover {
+      transform: translateY(-5px);
+      border-color: #2563eb;
+      box-shadow: 0 7px 18px rgba(37, 99, 235, 0.13);
+    }
+
+    /* Contact */
+    #contact {
+      scroll-margin-top: 80px;
+      margin-top: 55px;
+      padding: 40px 20px;
+      background: white;
+      border-radius: 12px;
+      text-align: center;
+      box-shadow: 0 3px 12px rgba(0, 0, 0, 0.05);
+    }
+
+    #contact h2 {
+      color: #17346d;
+      font-size: 28px;
+      margin-bottom: 12px;
+    }
+
+    #contact p {
+      color: #666;
+    }
+
+    /* Footer */
+    footer {
+      margin-top: 50px;
+      padding: 25px 15px;
+      background: #10234d;
+      color: white;
       text-align: center;
     }
-    .products {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-      gap: 20px;
+
+    footer p {
+      font-size: 14px;
     }
-    .product {
-      background: white;
-      padding: 25px;
-      border-radius: 12px;
-      box-shadow: 0 2px 10px #ddd;
+
+    /* Tablet */
+    @media (max-width: 900px) {
+      .category-grid {
+        grid-template-columns: repeat(3, 1fr);
+      }
     }
-    .product a {
-      display: inline-block;
-      background: #2563eb;
-      color: white;
-      padding: 10px 18px;
-      border-radius: 6px;
-      text-decoration: none;
+
+    /* Mobile */
+    @media (max-width: 600px) {
+      header {
+        padding: 30px 15px;
+      }
+
+      header h1 {
+        font-size: 28px;
+      }
+
+      nav {
+        gap: 22px;
+        padding: 14px 10px;
+      }
+
+      nav a {
+        font-size: 14px;
+      }
+
+      .welcome h2 {
+        font-size: 25px;
+      }
+
+      .category-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 12px;
+      }
+
+      .category-card {
+        min-height: 95px;
+        padding: 12px;
+        font-size: 13px;
+      }
+    }
+
+    @media (max-width: 350px) {
+      .category-grid {
+        grid-template-columns: 1fr;
+      }
     }
   </style>
 </head>
+
 <body>
-  <header>
+
+  <!-- Website Header -->
+  <header id="home">
     <h1>WeSellEverything</h1>
     <p>Discover Amazing Products Around the World</p>
   </header>
 
+  <!-- Main Navigation -->
   <nav>
-    <a href="#">Home</a>
-    <a href="#">Products</a>
-    <a href="#">Categories</a>
-    <a href="#">Contact</a>
+    <a href="#home">Home</a>
+    <a href="#categories">Categories</a>
+    <a href="#contact">Contact</a>
   </nav>
 
   <main>
-    <h2>Featured Products</h2>
-    <p>Find great products from trusted online stores.</p>
 
-    <div class="products">
-      <div class="product">
-        <h3>Smart Electronics</h3>
-        <p>Discover useful technology products.</p>
-        <a href="#">Explore</a>
+    <!-- Welcome -->
+    <section class="welcome">
+      <h2>Welcome to WeSellEverything</h2>
+      <p>Explore a world of products across different categories.</p>
+    </section>
+
+    <!-- All 32 Categories -->
+    <section id="categories">
+
+      <div class="section-heading">
+        <h2>All Categories</h2>
+        <p>Discover products from 32 different categories.</p>
       </div>
-      <div class="product">
-        <h3>Fashion & Accessories</h3>
-        <p>Explore style for every occasion.</p>
-        <a href="#">Explore</a>
+
+      <div class="category-grid">
+
+        <div class="category-card">Home Appliances</div>
+
+        <div class="category-card">Computers & Office</div>
+
+        <div class="category-card">Home Improvement</div>
+
+        <div class="category-card">Home & Garden</div>
+
+        <div class="category-card">Sports & Entertainment</div>
+
+        <div class="category-card">Office Supplies & School Supplies</div>
+
+        <div class="category-card">Toys & Hobbies</div>
+
+        <div class="category-card">Security & Protection</div>
+
+        <div class="category-card">Automobiles, Parts & Accessories</div>
+
+        <div class="category-card">Jewelry & Accessories</div>
+
+        <div class="category-card">Lights & Lighting</div>
+
+        <div class="category-card">Consumer Electronics</div>
+
+        <div class="category-card">Beauty & Health</div>
+
+        <div class="category-card">Wedding & Events</div>
+
+        <div class="category-card">Shoes</div>
+
+        <div class="category-card">Electronic Components & Supplies</div>
+
+        <div class="category-card">Phones & Telecommunications</div>
+
+        <div class="category-card">Tools</div>
+
+        <div class="category-card">Mother & Kids</div>
+
+        <div class="category-card">Furniture</div>
+
+        <div class="category-card">Watches</div>
+
+        <div class="category-card">Luggage & Bags</div>
+
+        <div class="category-card">Underwear</div>
+
+        <div class="category-card">Virtual Products</div>
+
+        <div class="category-card">Business & Industrial</div>
+
+        <div class="category-card">Women's Clothing</div>
+
+        <div class="category-card">Men's Clothing</div>
+
+        <div class="category-card">Apparel Accessories</div>
+
+        <div class="category-card">Hair Extensions & Wigs</div>
+
+        <div class="category-card">Books & Cultural Goods</div>
+
+        <div class="category-card">Unique & Special-Use Products</div>
+
+        <div class="category-card">Motorcycle Equipment & Parts</div>
+
       </div>
-      <div class="product">
-        <h3>Home & Living</h3>
-        <p>Make your home more comfortable.</p>
-        <a href="#">Explore</a>
-      </div>
-    </div>
+    </section>
+
+    <!-- Contact -->
+    <section id="contact">
+      <h2>Contact Us</h2>
+      <p>Have a question? We will provide our contact information here.</p>
+    </section>
+
   </main>
+
+  <!-- Footer -->
+  <footer>
+    <p>&copy; 2026 WeSellEverything. All rights reserved.</p>
+  </footer>
+
 </body>
 </html>
