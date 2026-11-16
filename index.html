@@ -1,4 +1,5 @@
 
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -56,15 +57,79 @@
       z-index: 100;
     }
 
-    nav a {
+    nav > a,
+    .categories-dropdown summary {
       color: white;
       text-decoration: none;
       font-size: 16px;
       font-weight: bold;
+      cursor: pointer;
+      list-style: none;
     }
 
-    nav a:hover {
+    nav > a:hover,
+    .categories-dropdown summary:hover {
       color: #facc15;
+    }
+
+    .categories-dropdown {
+      position: relative;
+    }
+
+    .categories-dropdown summary::-webkit-details-marker {
+      display: none;
+    }
+
+    .categories-dropdown summary::after {
+      content: " ▼";
+      font-size: 11px;
+    }
+
+    /* Dropdown menu */
+    .dropdown-menu {
+      position: absolute;
+      top: 38px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 520px;
+      max-width: 90vw;
+      max-height: 70vh;
+      overflow-y: auto;
+      background: white;
+      border-radius: 10px;
+      padding: 15px;
+      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+      border: 1px solid #e5eaf3;
+    }
+
+    .dropdown-menu h3 {
+      color: #17346d;
+      text-align: center;
+      font-size: 18px;
+      margin-bottom: 12px;
+      padding-bottom: 10px;
+      border-bottom: 1px solid #e5eaf3;
+    }
+
+    .dropdown-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 5px 10px;
+    }
+
+    .dropdown-grid a {
+      display: block;
+      padding: 9px 10px;
+      border-radius: 6px;
+      color: #17346d;
+      text-decoration: none;
+      font-size: 14px;
+      line-height: 1.4;
+    }
+
+    .dropdown-grid a:hover {
+      background: #eaf1ff;
+      color: #1d4ed8;
     }
 
     /* Main content */
@@ -77,8 +142,11 @@
     /* Welcome section */
     .welcome {
       text-align: center;
-      padding: 35px 15px;
+      padding: 55px 15px;
       margin-bottom: 30px;
+      background: white;
+      border-radius: 12px;
+      box-shadow: 0 3px 12px rgba(0, 0, 0, 0.05);
     }
 
     .welcome h2 {
@@ -92,59 +160,10 @@
       font-size: 17px;
     }
 
-    /* Categories */
-    #categories {
-      scroll-margin-top: 80px;
-    }
-
-    .section-heading {
-      text-align: center;
-      margin-bottom: 28px;
-    }
-
-    .section-heading h2 {
-      font-size: 29px;
-      color: #17346d;
-      margin-bottom: 8px;
-    }
-
-    .section-heading p {
-      color: #666;
-    }
-
-    .category-grid {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 18px;
-    }
-
-    .category-card {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      min-height: 105px;
-      padding: 18px;
-      background: white;
-      border: 1px solid #e5eaf3;
-      border-radius: 12px;
-      box-shadow: 0 3px 12px rgba(0, 0, 0, 0.05);
-      text-align: center;
-      font-size: 15px;
-      font-weight: bold;
-      color: #17346d;
-      transition: 0.25s ease;
-    }
-
-    .category-card:hover {
-      transform: translateY(-5px);
-      border-color: #2563eb;
-      box-shadow: 0 7px 18px rgba(37, 99, 235, 0.13);
-    }
-
     /* Contact */
     #contact {
       scroll-margin-top: 80px;
-      margin-top: 55px;
+      margin-top: 35px;
       padding: 40px 20px;
       background: white;
       border-radius: 12px;
@@ -175,14 +194,7 @@
       font-size: 14px;
     }
 
-    /* Tablet */
-    @media (max-width: 900px) {
-      .category-grid {
-        grid-template-columns: repeat(3, 1fr);
-      }
-    }
-
-    /* Mobile */
+    /* Tablet and mobile */
     @media (max-width: 600px) {
       header {
         padding: 30px 15px;
@@ -197,29 +209,31 @@
         padding: 14px 10px;
       }
 
-      nav a {
+      nav > a,
+      .categories-dropdown summary {
         font-size: 14px;
+      }
+
+      .dropdown-menu {
+        position: fixed;
+        top: 125px;
+        left: 5%;
+        transform: none;
+        width: 90%;
+        max-width: none;
+        max-height: 65vh;
+      }
+
+      .dropdown-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .welcome {
+        padding: 40px 15px;
       }
 
       .welcome h2 {
         font-size: 25px;
-      }
-
-      .category-grid {
-        grid-template-columns: repeat(2, 1fr);
-        gap: 12px;
-      }
-
-      .category-card {
-        min-height: 95px;
-        padding: 12px;
-        font-size: 13px;
-      }
-    }
-
-    @media (max-width: 350px) {
-      .category-grid {
-        grid-template-columns: 1fr;
       }
     }
   </style>
@@ -236,7 +250,51 @@
   <!-- Main Navigation -->
   <nav>
     <a href="#home">Home</a>
-    <a href="#categories">Categories</a>
+
+    <!-- Categories Dropdown -->
+    <details class="categories-dropdown">
+      <summary>Categories</summary>
+
+      <div class="dropdown-menu">
+        <h3>All 32 Categories</h3>
+
+        <div class="dropdown-grid">
+          <a href="#home">Home Appliances</a>
+          <a href="#home">Computers & Office</a>
+          <a href="#home">Home Improvement</a>
+          <a href="#home">Home & Garden</a>
+          <a href="#home">Sports & Entertainment</a>
+          <a href="#home">Office Supplies & School Supplies</a>
+          <a href="#home">Toys & Hobbies</a>
+          <a href="#home">Security & Protection</a>
+          <a href="#home">Automobiles, Parts & Accessories</a>
+          <a href="#home">Jewelry & Accessories</a>
+          <a href="#home">Lights & Lighting</a>
+          <a href="#home">Consumer Electronics</a>
+          <a href="#home">Beauty & Health</a>
+          <a href="#home">Wedding & Events</a>
+          <a href="#home">Shoes</a>
+          <a href="#home">Electronic Components & Supplies</a>
+          <a href="#home">Phones & Telecommunications</a>
+          <a href="#home">Tools</a>
+          <a href="#home">Mother & Kids</a>
+          <a href="#home">Furniture</a>
+          <a href="#home">Watches</a>
+          <a href="#home">Luggage & Bags</a>
+          <a href="#home">Underwear</a>
+          <a href="#home">Virtual Products</a>
+          <a href="#home">Business & Industrial</a>
+          <a href="#home">Women's Clothing</a>
+          <a href="#home">Men's Clothing</a>
+          <a href="#home">Apparel Accessories</a>
+          <a href="#home">Hair Extensions & Wigs</a>
+          <a href="#home">Books & Cultural Goods</a>
+          <a href="#home">Unique & Special-Use Products</a>
+          <a href="#home">Motorcycle Equipment & Parts</a>
+        </div>
+      </div>
+    </details>
+
     <a href="#contact">Contact</a>
   </nav>
 
@@ -246,83 +304,6 @@
     <section class="welcome">
       <h2>Welcome to WeSellEverything</h2>
       <p>Explore a world of products across different categories.</p>
-    </section>
-
-    <!-- All 32 Categories -->
-    <section id="categories">
-
-      <div class="section-heading">
-        <h2>All Categories</h2>
-        <p>Discover products from 32 different categories.</p>
-      </div>
-
-      <div class="category-grid">
-
-        <div class="category-card">Home Appliances</div>
-
-        <div class="category-card">Computers & Office</div>
-
-        <div class="category-card">Home Improvement</div>
-
-        <div class="category-card">Home & Garden</div>
-
-        <div class="category-card">Sports & Entertainment</div>
-
-        <div class="category-card">Office Supplies & School Supplies</div>
-
-        <div class="category-card">Toys & Hobbies</div>
-
-        <div class="category-card">Security & Protection</div>
-
-        <div class="category-card">Automobiles, Parts & Accessories</div>
-
-        <div class="category-card">Jewelry & Accessories</div>
-
-        <div class="category-card">Lights & Lighting</div>
-
-        <div class="category-card">Consumer Electronics</div>
-
-        <div class="category-card">Beauty & Health</div>
-
-        <div class="category-card">Wedding & Events</div>
-
-        <div class="category-card">Shoes</div>
-
-        <div class="category-card">Electronic Components & Supplies</div>
-
-        <div class="category-card">Phones & Telecommunications</div>
-
-        <div class="category-card">Tools</div>
-
-        <div class="category-card">Mother & Kids</div>
-
-        <div class="category-card">Furniture</div>
-
-        <div class="category-card">Watches</div>
-
-        <div class="category-card">Luggage & Bags</div>
-
-        <div class="category-card">Underwear</div>
-
-        <div class="category-card">Virtual Products</div>
-
-        <div class="category-card">Business & Industrial</div>
-
-        <div class="category-card">Women's Clothing</div>
-
-        <div class="category-card">Men's Clothing</div>
-
-        <div class="category-card">Apparel Accessories</div>
-
-        <div class="category-card">Hair Extensions & Wigs</div>
-
-        <div class="category-card">Books & Cultural Goods</div>
-
-        <div class="category-card">Unique & Special-Use Products</div>
-
-        <div class="category-card">Motorcycle Equipment & Parts</div>
-
-      </div>
     </section>
 
     <!-- Contact -->
