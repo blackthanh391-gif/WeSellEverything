@@ -79,6 +79,7 @@
       background: #10234d;
       display: flex;
       flex-direction: row;
+      flex-wrap: nowrap;
       align-items: center;
       gap: 8px;
       padding: 10px 22px;
@@ -89,6 +90,7 @@
     nav > a,
     .categories-dropdown summary {
       display: block;
+      flex-shrink: 0;
       color: white;
       text-decoration: none;
       font-size: 15px;
@@ -176,7 +178,7 @@
       display: flex;
       align-items: center;
       gap: 7px;
-      flex: 1;
+      flex: 1 1 180px;
       max-width: 430px;
       min-width: 180px;
       margin-left: 8px;
@@ -185,6 +187,7 @@
     #product-search {
       flex: 1;
       min-width: 0;
+      width: 100%;
       padding: 11px 14px;
       border: 2px solid #dbe4f2;
       border-radius: 7px;
@@ -198,6 +201,7 @@
     }
 
     .nav-search button {
+      flex-shrink: 0;
       padding: 11px 16px;
       background: #ff8c00;
       color: white;
@@ -437,18 +441,31 @@
       font-size: 14px;
     }
 
-    /* TABLET */
+    /* TABLET: KEEP NAVIGATION ON ONE ROW */
     @media (max-width: 900px) {
-      .product-grid {
-        grid-template-columns: repeat(2, minmax(0, 1fr));
+      nav {
+        flex-wrap: nowrap;
+        overflow-x: auto;
+        overflow-y: visible;
+        padding: 10px 12px;
+        gap: 5px;
       }
 
-      nav {
-        flex-wrap: wrap;
+      nav > a,
+      .categories-dropdown summary {
+        font-size: 13px;
+        padding: 9px 8px;
       }
 
       .nav-search {
-        max-width: none;
+        flex: 1 0 180px;
+        max-width: 300px;
+        min-width: 180px;
+        margin-left: 4px;
+      }
+
+      .product-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
       }
     }
 
@@ -481,6 +498,8 @@
       nav {
         position: sticky;
         top: 0;
+        flex-wrap: wrap;
+        overflow: visible;
         gap: 3px;
         padding: 8px;
       }
@@ -492,8 +511,9 @@
       }
 
       .nav-search {
-        flex-basis: 100%;
+        flex: 1 0 100%;
         max-width: none;
+        min-width: 0;
         margin: 5px 0 0;
       }
 
