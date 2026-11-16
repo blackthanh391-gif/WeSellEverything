@@ -159,6 +159,117 @@
       font-size: 17px;
     }
 
+    /* Products */
+    #products {
+      scroll-margin-top: 85px;
+      margin-top: 35px;
+    }
+
+    #products h2 {
+      color: #17346d;
+      font-size: 28px;
+      text-align: center;
+      margin-bottom: 25px;
+    }
+
+    #products-message {
+      text-align: center;
+      color: #666;
+      padding: 20px;
+    }
+
+    .product-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 22px;
+    }
+
+    .product-card {
+      background: white;
+      border: 1px solid #e5eaf3;
+      border-radius: 12px;
+      padding: 15px;
+      box-shadow: 0 3px 12px rgba(0, 0, 0, 0.05);
+      min-width: 0;
+    }
+
+    .product-main-image {
+      width: 100%;
+      height: 240px;
+      object-fit: contain;
+      background: #f7f8fa;
+      border-radius: 8px;
+      display: block;
+    }
+
+    .product-thumbnails {
+      display: flex;
+      gap: 8px;
+      overflow-x: auto;
+      padding: 10px 0;
+    }
+
+    .product-thumbnails img {
+      width: 58px;
+      height: 58px;
+      object-fit: cover;
+      border: 2px solid #e5eaf3;
+      border-radius: 6px;
+      cursor: pointer;
+      flex: 0 0 auto;
+    }
+
+    .product-thumbnails img:hover {
+      border-color: #1d4ed8;
+    }
+
+    .product-category {
+      color: #1d4ed8;
+      font-size: 13px;
+      margin-top: 8px;
+    }
+
+    .product-card h3 {
+      color: #17346d;
+      font-size: 18px;
+      margin: 7px 0;
+    }
+
+    .product-description {
+      color: #666;
+      font-size: 14px;
+      margin: 10px 0;
+    }
+
+    .product-price {
+      color: #e63946;
+      font-size: 21px;
+      font-weight: bold;
+      margin-top: 12px;
+    }
+
+    .product-links {
+      display: flex;
+      flex-direction: column;
+      gap: 9px;
+      margin-top: 15px;
+    }
+
+    .product-buy-button {
+      display: block;
+      text-align: center;
+      background: #ff8c00;
+      color: white;
+      padding: 11px 15px;
+      border-radius: 7px;
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    .product-buy-button:hover {
+      background: #e67800;
+    }
+
     /* About Us */
     #about {
       scroll-margin-top: 80px;
@@ -310,6 +421,10 @@
       .contact-grid {
         grid-template-columns: 1fr;
       }
+
+      .product-grid {
+        grid-template-columns: 1fr;
+      }
     }
   </style>
 </head>
@@ -334,38 +449,38 @@
         <h3>All 32 Categories</h3>
 
         <div class="dropdown-grid">
-          <a href="#home">Home Appliances</a>
-          <a href="#home">Computers & Office</a>
-          <a href="#home">Home Improvement</a>
-          <a href="#home">Home & Garden</a>
-          <a href="#home">Sports & Entertainment</a>
-          <a href="#home">Office Supplies & School Supplies</a>
-          <a href="#home">Toys & Hobbies</a>
-          <a href="#home">Security & Protection</a>
-          <a href="#home">Automobiles, Parts & Accessories</a>
-          <a href="#home">Jewelry & Accessories</a>
-          <a href="#home">Lights & Lighting</a>
-          <a href="#home">Consumer Electronics</a>
-          <a href="#home">Beauty & Health</a>
-          <a href="#home">Wedding & Events</a>
-          <a href="#home">Shoes</a>
-          <a href="#home">Electronic Components & Supplies</a>
-          <a href="#home">Phones & Telecommunications</a>
-          <a href="#home">Tools</a>
-          <a href="#home">Mother & Kids</a>
-          <a href="#home">Furniture</a>
-          <a href="#home">Watches</a>
-          <a href="#home">Luggage & Bags</a>
-          <a href="#home">Underwear</a>
-          <a href="#home">Virtual Products</a>
-          <a href="#home">Business & Industrial</a>
-          <a href="#home">Women's Clothing</a>
-          <a href="#home">Men's Clothing</a>
-          <a href="#home">Apparel Accessories</a>
-          <a href="#home">Hair Extensions & Wigs</a>
-          <a href="#home">Books & Cultural Goods</a>
-          <a href="#home">Unique & Special-Use Products</a>
-          <a href="#home">Motorcycle Equipment & Parts</a>
+          <a href="#products">Home Appliances</a>
+          <a href="#products">Computers & Office</a>
+          <a href="#products">Home Improvement</a>
+          <a href="#products">Home & Garden</a>
+          <a href="#products">Sports & Entertainment</a>
+          <a href="#products">Office Supplies & School Supplies</a>
+          <a href="#products">Toys & Hobbies</a>
+          <a href="#products">Security & Protection</a>
+          <a href="#products">Automobiles, Parts & Accessories</a>
+          <a href="#products">Jewelry & Accessories</a>
+          <a href="#products">Lights & Lighting</a>
+          <a href="#products">Consumer Electronics</a>
+          <a href="#products">Beauty & Health</a>
+          <a href="#products">Wedding & Events</a>
+          <a href="#products">Shoes</a>
+          <a href="#products">Electronic Components & Supplies</a>
+          <a href="#products">Phones & Telecommunications</a>
+          <a href="#products">Tools</a>
+          <a href="#products">Mother & Kids</a>
+          <a href="#products">Furniture</a>
+          <a href="#products">Watches</a>
+          <a href="#products">Luggage & Bags</a>
+          <a href="#products">Underwear</a>
+          <a href="#products">Virtual Products</a>
+          <a href="#products">Business & Industrial</a>
+          <a href="#products">Women's Clothing</a>
+          <a href="#products">Men's Clothing</a>
+          <a href="#products">Apparel Accessories</a>
+          <a href="#products">Hair Extensions & Wigs</a>
+          <a href="#products">Books & Cultural Goods</a>
+          <a href="#products">Unique & Special-Use Products</a>
+          <a href="#products">Motorcycle Equipment & Parts</a>
         </div>
       </div>
     </details>
@@ -380,6 +495,13 @@
     <section class="welcome">
       <h2>Welcome to WeSellEverything</h2>
       <p>Explore a world of products across different categories.</p>
+    </section>
+
+    <!-- Products from Supabase -->
+    <section id="products">
+      <h2>Our Products</h2>
+      <div id="products-message">Loading products...</div>
+      <div id="product-grid" class="product-grid"></div>
     </section>
 
     <!-- About Us -->
@@ -409,7 +531,6 @@
 
       <div class="contact-grid">
 
-        <!-- Gmail -->
         <div class="contact-card">
           <h3>Gmail Support</h3>
           <p>Send us an email for questions and support.</p>
@@ -418,7 +539,6 @@
           </a>
         </div>
 
-        <!-- Facebook -->
         <div class="contact-card">
           <h3>Facebook</h3>
           <p>Visit our Facebook page and send us a message.</p>
@@ -430,7 +550,6 @@
           </a>
         </div>
 
-        <!-- WhatsApp -->
         <div class="contact-card">
           <h3>WhatsApp</h3>
           <p>Chat with us directly on WhatsApp.</p>
@@ -453,12 +572,207 @@
   </footer>
 
   <script>
+    /* Supabase configuration */
+    const SUPABASE_URL = "https://ghjazlocupfmnvovszzo.supabase.co";
+    const SUPABASE_KEY = "sb_publishable_kjdtB8MJrQZYc1e5LISUqg_6imEy3Ea";
+
+    const supabaseHeaders = {
+      "apikey": SUPABASE_KEY,
+      "Authorization": "Bearer " + SUPABASE_KEY
+    };
+
+    /* Safely display database text */
+    function escapeHTML(value) {
+      return String(value ?? "").replace(/[&<>"']/g, function(char) {
+        return {
+          "&": "&amp;",
+          "<": "&lt;",
+          ">": "&gt;",
+          '"': "&quot;",
+          "'": "&#039;"
+        }[char];
+      });
+    }
+
+    /* Load products from Supabase */
+    async function loadProducts() {
+      const message = document.getElementById("products-message");
+      const grid = document.getElementById("product-grid");
+
+      try {
+        const productsResponse = await fetch(
+          `${SUPABASE_URL}/rest/v1/products?select=id,category_id,name,description,price,is_active&is_active=eq.true&order=id.desc`,
+          { headers: supabaseHeaders }
+        );
+
+        if (!productsResponse.ok) {
+          throw new Error("Products: " + await productsResponse.text());
+        }
+
+        const products = await productsResponse.json();
+
+        if (products.length === 0) {
+          message.textContent = "No products available yet.";
+          return;
+        }
+
+        const productIds = products.map(product => product.id).join(",");
+
+        const [imagesResponse, linksResponse, categoriesResponse] =
+          await Promise.all([
+            fetch(
+              `${SUPABASE_URL}/rest/v1/product_images?select=product_id,image_url,sort&product_id=in.(${productIds})&order=sort.asc`,
+              { headers: supabaseHeaders }
+            ),
+            fetch(
+              `${SUPABASE_URL}/rest/v1/product_links?select=product_id,platform,url&product_id=in.(${productIds})`,
+              { headers: supabaseHeaders }
+            ),
+            fetch(
+              `${SUPABASE_URL}/rest/v1/categories?select=id,name`,
+              { headers: supabaseHeaders }
+            )
+          ]);
+
+        if (!imagesResponse.ok) {
+          throw new Error("Product images: " + await imagesResponse.text());
+        }
+
+        if (!linksResponse.ok) {
+          throw new Error("Product links: " + await linksResponse.text());
+        }
+
+        if (!categoriesResponse.ok) {
+          throw new Error("Categories: " + await categoriesResponse.text());
+        }
+
+        const [images, links, categories] = await Promise.all([
+          imagesResponse.json(),
+          linksResponse.json(),
+          categoriesResponse.json()
+        ]);
+
+        const categoryMap = {};
+        categories.forEach(category => {
+          categoryMap[category.id] = category.name;
+        });
+
+        grid.innerHTML = products.map(product => {
+          const productImages = images.filter(
+            image => image.product_id === product.id
+          );
+
+          const productLinks = links.filter(
+            link => link.product_id === product.id
+          );
+
+          const mainImage = productImages[0]?.image_url || "";
+
+          const thumbnails = productImages.map(image => {
+            if (!image.image_url) return "";
+
+            return `
+              <img
+                src="${escapeHTML(image.image_url)}"
+                alt="${escapeHTML(product.name)}"
+                class="product-thumbnail"
+                data-image="${escapeHTML(image.image_url)}"
+                loading="lazy"
+              >
+            `;
+          }).join("");
+
+          const buyButtons = productLinks.map(link => {
+            if (!link.url) return "";
+
+            const platform = escapeHTML(link.platform || "Visit Store");
+
+            return `
+              <a
+                class="product-buy-button"
+                href="${escapeHTML(link.url)}"
+                target="_blank"
+                rel="noopener noreferrer">
+                Click & Buy - ${platform}
+              </a>
+            `;
+          }).join("");
+
+          const price = Number(product.price);
+          const formattedPrice = Number.isFinite(price)
+            ? "$" + price.toFixed(2)
+            : escapeHTML(product.price);
+
+          return `
+            <article class="product-card">
+
+              ${
+                mainImage
+                  ? `<img
+                      class="product-main-image"
+                      src="${escapeHTML(mainImage)}"
+                      alt="${escapeHTML(product.name)}"
+                      loading="lazy"
+                    >`
+                  : `<div class="product-main-image"></div>`
+              }
+
+              <div class="product-thumbnails">
+                ${thumbnails}
+              </div>
+
+              <p class="product-category">
+                ${escapeHTML(categoryMap[product.category_id] || "")}
+              </p>
+
+              <h3>${escapeHTML(product.name)}</h3>
+
+              <p class="product-description">
+                ${escapeHTML(product.description)}
+              </p>
+
+              <p class="product-price">
+                ${formattedPrice}
+              </p>
+
+              <div class="product-links">
+                ${buyButtons}
+              </div>
+
+            </article>
+          `;
+        }).join("");
+
+        message.textContent = "";
+
+      } catch (error) {
+        console.error("Supabase error:", error);
+        message.textContent =
+          "Unable to load products. Please check your Supabase permissions and database settings.";
+      }
+    }
+
+    /* Change the main image when a thumbnail is clicked */
+    document.addEventListener("click", function(event) {
+      const thumbnail = event.target.closest(".product-thumbnail");
+
+      if (!thumbnail) return;
+
+      const card = thumbnail.closest(".product-card");
+      const mainImage = card.querySelector(".product-main-image");
+
+      if (mainImage) {
+        mainImage.src = thumbnail.dataset.image;
+      }
+    });
+
+    /* Contact section */
     function showContact() {
       const contact = document.getElementById("contact");
 
       contact.style.display = "block";
 
-      setTimeout(function () {
+      setTimeout(function() {
         contact.scrollIntoView({
           behavior: "smooth",
           block: "start"
@@ -476,6 +790,9 @@
         behavior: "smooth"
       });
     }
+
+    /* Start loading products */
+    loadProducts();
   </script>
 
 </body>
