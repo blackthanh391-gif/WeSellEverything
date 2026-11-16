@@ -184,6 +184,7 @@
 
     /* Contact */
     #contact {
+      display: none;
       scroll-margin-top: 80px;
       margin-top: 35px;
       padding: 45px 25px;
@@ -323,7 +324,7 @@
 
   <!-- Main Navigation -->
   <nav>
-    <a href="#home">Home</a>
+    <a href="#home" onclick="hideContact()">Home</a>
 
     <!-- Categories Dropdown -->
     <details class="categories-dropdown">
@@ -369,8 +370,8 @@
       </div>
     </details>
 
-    <a href="#about">About Us</a>
-    <a href="#contact">Contact</a>
+    <a href="#about" onclick="hideContact()">About Us</a>
+    <a href="#contact" onclick="showContact()">Contact</a>
   </nav>
 
   <main>
@@ -450,6 +451,32 @@
   <footer>
     <p>&copy; 2026 WeSellEverything. All rights reserved.</p>
   </footer>
+
+  <script>
+    function showContact() {
+      const contact = document.getElementById("contact");
+
+      contact.style.display = "block";
+
+      setTimeout(function () {
+        contact.scrollIntoView({
+          behavior: "smooth",
+          block: "start"
+        });
+      }, 50);
+    }
+
+    function hideContact() {
+      const contact = document.getElementById("contact");
+
+      contact.style.display = "none";
+
+      window.scrollTo({
+        top: 0,
+        behavior: "smooth"
+      });
+    }
+  </script>
 
 </body>
 </html>
