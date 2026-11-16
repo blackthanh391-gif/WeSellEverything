@@ -25,66 +25,85 @@
       line-height: 1.6;
     }
 
-    /* Header with Logo */
+    /* HEADER */
     header {
+      position: relative;
+      min-height: 210px;
       background: linear-gradient(135deg, #10234d, #1d4ed8);
       color: white;
       display: flex;
       align-items: center;
-      justify-content: flex-start;
-      gap: 20px;
-      text-align: left;
-      padding: 25px 35px;
+      justify-content: center;
+      text-align: center;
+      padding: 20px;
+    }
+
+    .brand {
+      position: absolute;
+      top: 15px;
+      left: 20px;
+      display: flex;
+      align-items: center;
+      gap: 15px;
     }
 
     .header-logo {
-      width: 85px;
-      height: 85px;
+      width: 150px;
+      height: 150px;
       object-fit: contain;
       flex-shrink: 0;
       border-radius: 8px;
     }
 
-    .header-text h1 {
-      font-size: 36px;
-      margin-bottom: 5px;
+    .brand h1 {
+      color: #ff8c00;
+      font-size: 38px;
+      font-weight: bold;
+      line-height: 1.2;
     }
 
-    .header-text p {
-      font-size: 17px;
-      color: #e0eaff;
+    .header-slogan {
+      color: white;
+      font-size: 15px;
+      text-align: center;
+      width: 100%;
+      padding-top: 150px;
     }
 
-    /* Navigation */
+    /* LEFT NAVIGATION */
     nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      bottom: 0;
+      width: 190px;
       background: #10234d;
       display: flex;
-      justify-content: center;
-      align-items: center;
-      gap: 35px;
-      padding: 16px 20px;
-      position: sticky;
-      top: 0;
-      z-index: 100;
+      flex-direction: column;
+      align-items: stretch;
+      gap: 8px;
+      padding: 20px 12px;
+      overflow-y: auto;
+      z-index: 200;
     }
 
     nav > a,
     .categories-dropdown summary {
+      display: block;
       color: white;
       text-decoration: none;
-      font-size: 16px;
+      font-size: 15px;
       font-weight: bold;
       cursor: pointer;
       list-style: none;
+      padding: 12px;
+      border-radius: 7px;
     }
 
     nav > a:hover,
     .categories-dropdown summary:hover {
+      background: #1d4ed8;
       color: #facc15;
-    }
-
-    .categories-dropdown {
-      position: relative;
     }
 
     .categories-dropdown summary::-webkit-details-marker {
@@ -93,22 +112,26 @@
 
     .categories-dropdown summary::after {
       content: " ▼";
-      font-size: 11px;
+      font-size: 10px;
     }
 
-    /* Dropdown menu */
+    /* CATEGORY DROPDOWN */
+    .categories-dropdown {
+      position: relative;
+    }
+
     .dropdown-menu {
       position: absolute;
-      top: 38px;
-      left: 50%;
-      transform: translateX(-50%);
-      width: 520px;
-      max-width: 90vw;
-      max-height: 70vh;
+      top: 0;
+      left: 100%;
+      margin-left: 5px;
+      width: 300px;
+      max-width: calc(100vw - 210px);
+      max-height: 65vh;
       overflow-y: auto;
       background: white;
       border-radius: 10px;
-      padding: 15px;
+      padding: 14px;
       box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
       border: 1px solid #e5eaf3;
     }
@@ -116,44 +139,111 @@
     .dropdown-menu h3 {
       color: #17346d;
       text-align: center;
-      font-size: 18px;
-      margin-bottom: 12px;
+      font-size: 17px;
+      margin-bottom: 10px;
       padding-bottom: 10px;
       border-bottom: 1px solid #e5eaf3;
     }
 
     .dropdown-grid {
-      display: grid;
-      grid-template-columns: repeat(4, minmax(0, 1fr));
-      gap: 5px 10px;
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
     }
 
-    .dropdown-grid a {
+    .dropdown-grid button {
       display: block;
+      width: 100%;
+      text-align: left;
       padding: 9px 10px;
+      border: none;
       border-radius: 6px;
+      background: white;
       color: #17346d;
-      text-decoration: none;
       font-size: 14px;
-      line-height: 1.4;
+      cursor: pointer;
     }
 
-    .dropdown-grid a:hover {
+    .dropdown-grid button:hover,
+    .dropdown-grid button.active {
       background: #eaf1ff;
       color: #1d4ed8;
+      font-weight: bold;
     }
 
-    /* Main content */
+    /* MAIN CONTENT */
     main {
-      max-width: 1400px;
-      width: 94%;
-      margin: 20px auto 35px;
+      width: auto;
+      max-width: 1600px;
+      margin: 25px 25px 35px 215px;
+      min-height: 400px;
     }
 
-    /* Products */
+    /* SEARCH AND FILTER */
+    .search-container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 10px;
+      max-width: 750px;
+      margin: 10px auto 20px;
+    }
+
+    #product-search {
+      flex: 1;
+      min-width: 0;
+      padding: 13px 16px;
+      border: 2px solid #1d4ed8;
+      border-radius: 8px;
+      font-size: 15px;
+      outline: none;
+    }
+
+    #product-search:focus {
+      border-color: #ff8c00;
+    }
+
+    .search-container button {
+      padding: 13px 20px;
+      background: #ff8c00;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      font-weight: bold;
+    }
+
+    .search-container button:hover {
+      background: #e67600;
+    }
+
+    .filter-container {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      margin: 0 auto 25px;
+      max-width: 750px;
+    }
+
+    .filter-container label {
+      font-weight: bold;
+      color: #17346d;
+    }
+
+    #category-filter {
+      flex: 1;
+      max-width: 400px;
+      padding: 11px;
+      border: 1px solid #cbd5e1;
+      border-radius: 8px;
+      background: white;
+      font-size: 14px;
+    }
+
+    /* PRODUCTS */
     #products {
-      scroll-margin-top: 85px;
-      margin-top: 0;
+      scroll-margin-top: 20px;
     }
 
     #products-message {
@@ -162,7 +252,6 @@
       padding: 20px;
     }
 
-    /* Product grid */
     .product-grid {
       display: grid;
       grid-template-columns: repeat(4, minmax(0, 1fr));
@@ -182,11 +271,9 @@
       flex-direction: column;
     }
 
-    /* Main product image */
     .product-main-image {
       width: 100%;
       height: 210px;
-      max-width: 100%;
       object-fit: contain;
       object-position: center;
       background: #f7f8fa;
@@ -194,7 +281,6 @@
       display: block;
     }
 
-    /* Product thumbnails */
     .product-thumbnails {
       display: flex;
       gap: 8px;
@@ -270,9 +356,9 @@
       background: #e67800;
     }
 
-    /* About Us */
+    /* ABOUT */
     #about {
-      scroll-margin-top: 80px;
+      scroll-margin-top: 20px;
       margin-top: 35px;
       padding: 45px 25px;
       background: white;
@@ -293,10 +379,10 @@
       font-size: 16px;
     }
 
-    /* Contact */
+    /* CONTACT */
     #contact {
       display: none;
-      scroll-margin-top: 80px;
+      scroll-margin-top: 20px;
       margin-top: 35px;
       padding: 45px 25px;
       background: white;
@@ -358,9 +444,10 @@
       background: #10234d;
     }
 
-    /* Footer */
+    /* FOOTER */
     footer {
       margin-top: 50px;
+      margin-left: 190px;
       padding: 25px 15px;
       background: #10234d;
       color: white;
@@ -371,73 +458,90 @@
       font-size: 14px;
     }
 
-    /* Tablet */
-    @media (max-width: 1000px) {
+    /* TABLET */
+    @media (max-width: 1100px) {
       .product-grid {
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-      }
-
-      .dropdown-grid {
         grid-template-columns: repeat(2, minmax(0, 1fr));
       }
     }
 
-    /* Mobile */
+    /* MOBILE */
     @media (max-width: 600px) {
       header {
-        padding: 20px 15px;
-        gap: 12px;
+        min-height: 160px;
+        padding: 12px;
+      }
+
+      .brand {
+        top: 10px;
+        left: 8px;
+        gap: 6px;
       }
 
       .header-logo {
-        width: 58px;
-        height: 58px;
+        width: 75px;
+        height: 75px;
       }
 
-      .header-text h1 {
-        font-size: 22px;
+      .brand h1 {
+        font-size: 20px;
       }
 
-      .header-text p {
-        font-size: 12px;
+      .header-slogan {
+        font-size: 11px;
+        padding-top: 85px;
       }
 
       nav {
-        gap: 18px;
-        padding: 14px 10px;
-        flex-wrap: wrap;
+        width: 135px;
+        padding: 12px 7px;
+        gap: 5px;
       }
 
       nav > a,
       .categories-dropdown summary {
-        font-size: 14px;
+        font-size: 13px;
+        padding: 10px 7px;
       }
 
       .dropdown-menu {
         position: fixed;
-        top: 125px;
-        left: 5%;
-        transform: none;
-        width: 90%;
+        top: 15px;
+        left: 140px;
+        width: calc(100vw - 150px);
         max-width: none;
-        max-height: 65vh;
-      }
-
-      .dropdown-grid {
-        grid-template-columns: repeat(2, minmax(0, 1fr));
+        max-height: 70vh;
+        margin: 0;
       }
 
       main {
-        width: 94%;
-        margin: 15px auto 25px;
+        margin: 15px 10px 25px 145px;
+        width: auto;
       }
 
-      #about {
-        padding: 35px 18px;
+      .search-container {
+        gap: 5px;
       }
 
-      .contact-grid {
-        grid-template-columns: 1fr;
+      #product-search {
+        padding: 11px 8px;
+        font-size: 12px;
+      }
+
+      .search-container button {
+        padding: 11px 8px;
+        font-size: 12px;
+      }
+
+      .filter-container {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 5px;
+      }
+
+      #category-filter {
+        max-width: none;
+        width: 100%;
       }
 
       .product-grid {
@@ -446,15 +550,28 @@
       }
 
       .product-main-image {
-        height: 260px;
+        height: 200px;
       }
 
       .product-card h3 {
-        font-size: 18px;
+        font-size: 16px;
       }
 
       .product-description {
-        font-size: 14px;
+        font-size: 13px;
+      }
+
+      #about,
+      #contact {
+        padding: 25px 12px;
+      }
+
+      .contact-grid {
+        grid-template-columns: 1fr;
+      }
+
+      footer {
+        margin-left: 135px;
       }
     }
   </style>
@@ -462,21 +579,23 @@
 
 <body>
 
-  <!-- Website Header with Logo -->
+  <!-- HEADER -->
   <header id="home">
-    <img
-      src="WE%20SELL%20EVERYTHING%20(1).png"
-      alt="WeSellEverything Logo"
-      class="header-logo"
-    >
-
-    <div class="header-text">
+    <div class="brand">
+      <img
+        src="WE%20SELL%20EVERYTHING%20(1).png"
+        alt="WeSellEverything Logo"
+        class="header-logo"
+      >
       <h1>WeSellEverything</h1>
-      <p>Discover Amazing Products Around the World</p>
     </div>
+
+    <p class="header-slogan">
+      Discover Amazing Products Around the World
+    </p>
   </header>
 
-  <!-- Main Navigation -->
+  <!-- LEFT NAVIGATION -->
   <nav>
     <a href="#home" onclick="hideContact()">Home</a>
 
@@ -484,41 +603,11 @@
       <summary>Categories</summary>
 
       <div class="dropdown-menu">
-        <h3>All 32 Categories</h3>
-
-        <div class="dropdown-grid">
-          <a href="#products">Home Appliances</a>
-          <a href="#products">Computers & Office</a>
-          <a href="#products">Home Improvement</a>
-          <a href="#products">Home & Garden</a>
-          <a href="#products">Sports & Entertainment</a>
-          <a href="#products">Office Supplies & School Supplies</a>
-          <a href="#products">Toys & Hobbies</a>
-          <a href="#products">Security & Protection</a>
-          <a href="#products">Automobiles, Parts & Accessories</a>
-          <a href="#products">Jewelry & Accessories</a>
-          <a href="#products">Lights & Lighting</a>
-          <a href="#products">Consumer Electronics</a>
-          <a href="#products">Beauty & Health</a>
-          <a href="#products">Wedding & Events</a>
-          <a href="#products">Shoes</a>
-          <a href="#products">Electronic Components & Supplies</a>
-          <a href="#products">Phones & Telecommunications</a>
-          <a href="#products">Tools</a>
-          <a href="#products">Mother & Kids</a>
-          <a href="#products">Furniture</a>
-          <a href="#products">Watches</a>
-          <a href="#products">Luggage & Bags</a>
-          <a href="#products">Underwear</a>
-          <a href="#products">Virtual Products</a>
-          <a href="#products">Business & Industrial</a>
-          <a href="#products">Women's Clothing</a>
-          <a href="#products">Men's Clothing</a>
-          <a href="#products">Apparel Accessories</a>
-          <a href="#products">Hair Extensions & Wigs</a>
-          <a href="#products">Books & Cultural Goods</a>
-          <a href="#products">Unique & Special-Use Products</a>
-          <a href="#products">Motorcycle Equipment & Parts</a>
+        <h3>Product Categories</h3>
+        <div class="dropdown-grid" id="category-menu">
+          <button type="button" onclick="selectCategory('all')">
+            All Products
+          </button>
         </div>
       </div>
     </details>
@@ -529,13 +618,36 @@
 
   <main>
 
-    <!-- Products from Supabase -->
+    <!-- PRODUCTS -->
     <section id="products">
+
+      <!-- SEARCH -->
+      <div class="search-container">
+        <input
+          type="search"
+          id="product-search"
+          placeholder="Search for products..."
+          aria-label="Search products"
+        >
+        <button type="button" onclick="applyFilters()">
+          Search
+        </button>
+      </div>
+
+      <!-- CATEGORY FILTER -->
+      <div class="filter-container">
+        <label for="category-filter">Filter by category:</label>
+        <select id="category-filter">
+          <option value="all">All Products</option>
+        </select>
+      </div>
+
       <div id="products-message">Loading products...</div>
       <div id="product-grid" class="product-grid"></div>
+
     </section>
 
-    <!-- About Us -->
+    <!-- ABOUT US -->
     <section id="about">
       <h2>About Us</h2>
       <p>Welcome to WeSellEverything!</p>
@@ -551,7 +663,7 @@
       <p>Thank you for visiting our shop!</p>
     </section>
 
-    <!-- Contact -->
+    <!-- CONTACT -->
     <section id="contact">
       <h2>Contact Us</h2>
 
@@ -595,22 +707,32 @@
 
   </main>
 
-  <!-- Footer -->
+  <!-- FOOTER -->
   <footer>
     <p>&copy; 2026 WeSellEverything. All rights reserved.</p>
   </footer>
 
   <script>
-    /* Supabase configuration */
-    const SUPABASE_URL = "https://ghjazlocupfmnvovszzo.supabase.co";
-    const SUPABASE_KEY = "sb_publishable_kjdtB8MJrQZYc1e5LISUqg_6imEy3Ea";
+    /* SUPABASE CONFIGURATION */
+    const SUPABASE_URL =
+      "https://ghjazlocupfmnvovszzo.supabase.co";
+
+    const SUPABASE_KEY =
+      "sb_publishable_kjdtB8MJrQZYc1e5LISUqg_6imEy3Ea";
 
     const supabaseHeaders = {
       "apikey": SUPABASE_KEY,
       "Authorization": "Bearer " + SUPABASE_KEY
     };
 
-    /* Safely display database text */
+    /* DATA */
+    let allProducts = [];
+    let allCategories = [];
+    let allImages = [];
+    let allLinks = [];
+    let selectedCategory = "all";
+
+    /* SAFE HTML */
     function escapeHTML(value) {
       return String(value ?? "").replace(/[&<>"']/g, function(char) {
         return {
@@ -623,158 +745,72 @@
       });
     }
 
-    /* Load products from Supabase */
+    /* LOAD DATA FROM SUPABASE */
     async function loadProducts() {
       const message = document.getElementById("products-message");
-      const grid = document.getElementById("product-grid");
 
       try {
-        const productsResponse = await fetch(
-          `${SUPABASE_URL}/rest/v1/products?select=id,category_id,name,description,price,is_active&is_active=eq.true&order=id.desc`,
-          { headers: supabaseHeaders }
-        );
-
-        if (!productsResponse.ok) {
-          throw new Error("Products: " + await productsResponse.text());
-        }
-
-        const products = await productsResponse.json();
-
-        if (products.length === 0) {
-          message.textContent = "No products available yet.";
-          return;
-        }
-
-        const productIds = products.map(product => product.id).join(",");
-
-        const [imagesResponse, linksResponse, categoriesResponse] =
+        const [productsResponse, categoriesResponse] =
           await Promise.all([
             fetch(
-              `${SUPABASE_URL}/rest/v1/product_images?select=product_id,image_url,sort&product_id=in.(${productIds})&order=sort.asc`,
+              `${SUPABASE_URL}/rest/v1/products?select=id,category_id,name,description,price,is_active&is_active=eq.true&order=id.desc`,
               { headers: supabaseHeaders }
             ),
             fetch(
-              `${SUPABASE_URL}/rest/v1/product_links?select=product_id,platform,url&product_id=in.(${productIds})`,
-              { headers: supabaseHeaders }
-            ),
-            fetch(
-              `${SUPABASE_URL}/rest/v1/categories?select=id,name`,
+              `${SUPABASE_URL}/rest/v1/categories?select=id,name&order=name.asc`,
               { headers: supabaseHeaders }
             )
           ]);
 
-        if (!imagesResponse.ok) {
-          throw new Error("Product images: " + await imagesResponse.text());
-        }
-
-        if (!linksResponse.ok) {
-          throw new Error("Product links: " + await linksResponse.text());
+        if (!productsResponse.ok) {
+          throw new Error("Products: " + await productsResponse.text());
         }
 
         if (!categoriesResponse.ok) {
           throw new Error("Categories: " + await categoriesResponse.text());
         }
 
-        const [images, links, categories] = await Promise.all([
-          imagesResponse.json(),
-          linksResponse.json(),
-          categoriesResponse.json()
-        ]);
+        const products = await productsResponse.json();
+        const categories = await categoriesResponse.json();
 
-        const categoryMap = {};
+        const productIds = products.map(product => product.id);
 
-        categories.forEach(category => {
-          categoryMap[category.id] = category.name;
-        });
+        let images = [];
+        let links = [];
 
-        grid.innerHTML = products.map(product => {
-          const productImages = images.filter(
-            image => image.product_id === product.id
-          );
+        if (productIds.length > 0) {
+          const ids = productIds.join(",");
 
-          const productLinks = links.filter(
-            link => link.product_id === product.id
-          );
+          const [imagesResponse, linksResponse] = await Promise.all([
+            fetch(
+              `${SUPABASE_URL}/rest/v1/product_images?select=product_id,image_url,sort&product_id=in.(${ids})&order=sort.asc`,
+              { headers: supabaseHeaders }
+            ),
+            fetch(
+              `${SUPABASE_URL}/rest/v1/product_links?select=product_id,platform,url&product_id=in.(${ids})`,
+              { headers: supabaseHeaders }
+            )
+          ]);
 
-          const mainImage = productImages[0]?.image_url || "";
+          if (!imagesResponse.ok) {
+            throw new Error("Images: " + await imagesResponse.text());
+          }
 
-          const thumbnails = productImages.map(image => {
-            if (!image.image_url) return "";
+          if (!linksResponse.ok) {
+            throw new Error("Links: " + await linksResponse.text());
+          }
 
-            return `
-              <img
-                src="${escapeHTML(image.image_url)}"
-                alt="${escapeHTML(product.name)}"
-                class="product-thumbnail"
-                data-image="${escapeHTML(image.image_url)}"
-                loading="lazy"
-              >
-            `;
-          }).join("");
+          images = await imagesResponse.json();
+          links = await linksResponse.json();
+        }
 
-          const buyButtons = productLinks.map(link => {
-            if (!link.url) return "";
+        allProducts = products;
+        allCategories = categories;
+        allImages = images;
+        allLinks = links;
 
-            const platform = escapeHTML(link.platform || "Visit Store");
-
-            return `
-              <a
-                class="product-buy-button"
-                href="${escapeHTML(link.url)}"
-                target="_blank"
-                rel="noopener noreferrer">
-                Click & Buy - ${platform}
-              </a>
-            `;
-          }).join("");
-
-          const price = Number(product.price);
-
-          const formattedPrice = Number.isFinite(price)
-            ? "$" + price.toFixed(2)
-            : escapeHTML(product.price);
-
-          return `
-            <article class="product-card">
-
-              ${
-                mainImage
-                  ? `<img
-                      class="product-main-image"
-                      src="${escapeHTML(mainImage)}"
-                      alt="${escapeHTML(product.name)}"
-                      loading="lazy"
-                    >`
-                  : `<div class="product-main-image"></div>`
-              }
-
-              <div class="product-thumbnails">
-                ${thumbnails}
-              </div>
-
-              <p class="product-category">
-                ${escapeHTML(categoryMap[product.category_id] || "")}
-              </p>
-
-              <h3>${escapeHTML(product.name)}</h3>
-
-              <p class="product-description">
-                ${escapeHTML(product.description)}
-              </p>
-
-              <p class="product-price">
-                ${formattedPrice}
-              </p>
-
-              <div class="product-links">
-                ${buyButtons}
-              </div>
-
-            </article>
-          `;
-        }).join("");
-
-        message.textContent = "";
+        renderCategories();
+        renderProducts();
 
       } catch (error) {
         console.error("Supabase error:", error);
@@ -784,7 +820,222 @@
       }
     }
 
-    /* Change the main image when a thumbnail is clicked */
+    /* AUTOMATIC CATEGORY MENU */
+    function renderCategories() {
+      const menu = document.getElementById("category-menu");
+      const filter = document.getElementById("category-filter");
+
+      const currentSelection = selectedCategory;
+
+      const categoryButtons = allCategories.map(category => {
+        return `
+          <button
+            type="button"
+            class="${String(category.id) === String(currentSelection) ? "active" : ""}"
+            onclick="selectCategory('${escapeHTML(category.id)}')">
+            ${escapeHTML(category.name)}
+          </button>
+        `;
+      }).join("");
+
+      menu.innerHTML = `
+        <button
+          type="button"
+          class="${currentSelection === "all" ? "active" : ""}"
+          onclick="selectCategory('all')">
+          All Products
+        </button>
+        ${categoryButtons}
+      `;
+
+      filter.innerHTML = `
+        <option value="all">All Products</option>
+        ${allCategories.map(category => `
+          <option value="${escapeHTML(category.id)}">
+            ${escapeHTML(category.name)}
+          </option>
+        `).join("")}
+      `;
+
+      filter.value = allCategories.some(
+        category => String(category.id) === String(currentSelection)
+      ) ? currentSelection : "all";
+
+      if (filter.value === "all" && currentSelection !== "all") {
+        selectedCategory = "all";
+      }
+    }
+
+    /* SELECT CATEGORY */
+    function selectCategory(categoryId) {
+      selectedCategory = String(categoryId);
+
+      document.getElementById("category-filter").value =
+        selectedCategory;
+
+      renderCategories();
+      renderProducts();
+
+      document.querySelector(".categories-dropdown").open = false;
+
+      document.getElementById("products").scrollIntoView({
+        behavior: "smooth",
+        block: "start"
+      });
+    }
+
+    /* SEARCH + CATEGORY FILTER */
+    function applyFilters() {
+      const searchText = document
+        .getElementById("product-search")
+        .value
+        .toLowerCase()
+        .trim();
+
+      const categoryId =
+        document.getElementById("category-filter").value;
+
+      selectedCategory = categoryId;
+
+      const filteredProducts = allProducts.filter(product => {
+        const matchesCategory =
+          categoryId === "all" ||
+          String(product.category_id) === String(categoryId);
+
+        const matchesSearch =
+          String(product.name || "").toLowerCase().includes(searchText) ||
+          String(product.description || "").toLowerCase().includes(searchText);
+
+        return matchesCategory && matchesSearch;
+      });
+
+      renderProducts(filteredProducts);
+      renderCategories();
+    }
+
+    /* RENDER PRODUCTS */
+    function renderProducts(productsToShow = null) {
+      const grid = document.getElementById("product-grid");
+      const message = document.getElementById("products-message");
+
+      const products = productsToShow || allProducts;
+
+      if (products.length === 0) {
+        grid.innerHTML = "";
+
+        if (allProducts.length === 0) {
+          message.textContent = "No products available yet.";
+        } else {
+          message.textContent =
+            "No matching products found. Try another search or category.";
+        }
+
+        return;
+      }
+
+      message.textContent = "";
+
+      const categoryMap = {};
+
+      allCategories.forEach(category => {
+        categoryMap[category.id] = category.name;
+      });
+
+      grid.innerHTML = products.map(product => {
+        const productImages = allImages
+          .filter(image => image.product_id === product.id);
+
+        const productLinks = allLinks
+          .filter(link => link.product_id === product.id);
+
+        const mainImage = productImages[0]?.image_url || "";
+
+        const thumbnails = productImages.map(image => {
+          if (!image.image_url) return "";
+
+          return `
+            <img
+              src="${escapeHTML(image.image_url)}"
+              alt="${escapeHTML(product.name)}"
+              class="product-thumbnail"
+              data-image="${escapeHTML(image.image_url)}"
+              loading="lazy"
+            >
+          `;
+        }).join("");
+
+        const buyButtons = productLinks.map(link => {
+          if (!link.url) return "";
+
+          const platform = escapeHTML(link.platform || "Visit Store");
+
+          return `
+            <a
+              class="product-buy-button"
+              href="${escapeHTML(link.url)}"
+              target="_blank"
+              rel="noopener noreferrer">
+              Click & Buy - ${platform}
+            </a>
+          `;
+        }).join("");
+
+        const price = Number(product.price);
+
+        const formattedPrice = Number.isFinite(price)
+          ? "$" + price.toFixed(2)
+          : escapeHTML(product.price);
+
+        return `
+          <article class="product-card">
+
+            ${
+              mainImage
+                ? `<img
+                    class="product-main-image"
+                    src="${escapeHTML(mainImage)}"
+                    alt="${escapeHTML(product.name)}"
+                    loading="lazy"
+                  >`
+                : `<div class="product-main-image"></div>`
+            }
+
+            <div class="product-thumbnails">
+              ${thumbnails}
+            </div>
+
+            <p class="product-category">
+              ${escapeHTML(categoryMap[product.category_id] || "Uncategorized")}
+            </p>
+
+            <h3>${escapeHTML(product.name)}</h3>
+
+            <p class="product-description">
+              ${escapeHTML(product.description)}
+            </p>
+
+            <p class="product-price">
+              ${formattedPrice}
+            </p>
+
+            <div class="product-links">
+              ${buyButtons}
+            </div>
+
+          </article>
+        `;
+      }).join("");
+    }
+
+    /* CATEGORY SELECT CHANGE */
+    document.getElementById("category-filter")
+      .addEventListener("change", applyFilters);
+
+    /* SEARCH WHILE TYPING */
+    document.getElementById("product-search")
+      .addEventListener("input", applyFilters);
+
+    /* THUMBNAIL CLICK */
     document.addEventListener("click", function(event) {
       const thumbnail = event.target.closest(".product-thumbnail");
 
@@ -798,7 +1049,7 @@
       }
     });
 
-    /* Contact section */
+    /* CONTACT */
     function showContact() {
       const contact = document.getElementById("contact");
 
@@ -813,9 +1064,7 @@
     }
 
     function hideContact() {
-      const contact = document.getElementById("contact");
-
-      contact.style.display = "none";
+      document.getElementById("contact").style.display = "none";
 
       window.scrollTo({
         top: 0,
@@ -823,8 +1072,13 @@
       });
     }
 
-    /* Start loading products */
+    /* INITIAL LOAD */
     loadProducts();
+
+    /* REFRESH DATA EVERY 60 SECONDS */
+    setInterval(function() {
+      loadProducts();
+    }, 60000);
   </script>
 
 </body>
