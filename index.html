@@ -1,5 +1,4 @@
 
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -160,6 +159,29 @@
       font-size: 17px;
     }
 
+    /* About Us */
+    #about {
+      scroll-margin-top: 80px;
+      margin-top: 35px;
+      padding: 45px 25px;
+      background: white;
+      border-radius: 12px;
+      text-align: center;
+      box-shadow: 0 3px 12px rgba(0, 0, 0, 0.05);
+    }
+
+    #about h2 {
+      color: #17346d;
+      font-size: 28px;
+      margin-bottom: 15px;
+    }
+
+    #about p {
+      color: #666;
+      margin-bottom: 12px;
+      font-size: 16px;
+    }
+
     /* Contact */
     #contact {
       scroll-margin-top: 80px;
@@ -205,8 +227,9 @@
       }
 
       nav {
-        gap: 22px;
+        gap: 18px;
         padding: 14px 10px;
+        flex-wrap: wrap;
       }
 
       nav > a,
@@ -234,6 +257,10 @@
 
       .welcome h2 {
         font-size: 25px;
+      }
+
+      #about {
+        padding: 35px 18px;
       }
     }
   </style>
@@ -295,6 +322,7 @@
       </div>
     </details>
 
+    <a href="#about">About Us</a>
     <a href="#contact">Contact</a>
   </nav>
 
@@ -304,6 +332,22 @@
     <section class="welcome">
       <h2>Welcome to WeSellEverything</h2>
       <p>Explore a world of products across different categories.</p>
+    </section>
+
+    <!-- About Us -->
+    <section id="about">
+      <h2>About Us</h2>
+      <p>Welcome to WeSellEverything!</p>
+      <p>
+        We are an online product discovery platform offering
+        a wide range of products across different categories.
+      </p>
+      <p>
+        Our mission is to help customers discover interesting
+        products and find convenient shopping links from
+        different online stores around the world.
+      </p>
+      <p>Thank you for visiting our shop!</p>
     </section>
 
     <!-- Contact -->
