@@ -135,41 +135,13 @@
     main {
       max-width: 1400px;
       width: 94%;
-      margin: 35px auto;
-    }
-
-    /* Welcome section */
-    .welcome {
-      text-align: center;
-      padding: 55px 15px;
-      margin-bottom: 30px;
-      background: white;
-      border-radius: 12px;
-      box-shadow: 0 3px 12px rgba(0, 0, 0, 0.05);
-    }
-
-    .welcome h2 {
-      color: #17346d;
-      font-size: 30px;
-      margin-bottom: 12px;
-    }
-
-    .welcome p {
-      color: #666;
-      font-size: 17px;
+      margin: 20px auto 35px;
     }
 
     /* Products */
     #products {
       scroll-margin-top: 85px;
-      margin-top: 35px;
-    }
-
-    #products h2 {
-      color: #17346d;
-      font-size: 28px;
-      text-align: center;
-      margin-bottom: 25px;
+      margin-top: 0;
     }
 
     #products-message {
@@ -387,14 +359,14 @@
       font-size: 14px;
     }
 
-    /* Tablet: two products per row */
+    /* Tablet */
     @media (max-width: 1000px) {
       .product-grid {
         grid-template-columns: repeat(2, minmax(0, 1fr));
       }
     }
 
-    /* Tablet and mobile */
+    /* Mobile */
     @media (max-width: 600px) {
       header {
         padding: 30px 15px;
@@ -431,15 +403,7 @@
 
       main {
         width: 94%;
-        margin: 20px auto;
-      }
-
-      .welcome {
-        padding: 40px 15px;
-      }
-
-      .welcome h2 {
-        font-size: 25px;
+        margin: 15px auto 25px;
       }
 
       #about {
@@ -450,7 +414,6 @@
         grid-template-columns: 1fr;
       }
 
-      /* Mobile: one product per row */
       .product-grid {
         grid-template-columns: 1fr;
         gap: 18px;
@@ -483,7 +446,6 @@
   <nav>
     <a href="#home" onclick="hideContact()">Home</a>
 
-    <!-- Categories Dropdown -->
     <details class="categories-dropdown">
       <summary>Categories</summary>
 
@@ -533,15 +495,8 @@
 
   <main>
 
-    <!-- Welcome -->
-    <section class="welcome">
-      <h2>Welcome to WeSellEverything</h2>
-      <p>Explore a world of products across different categories.</p>
-    </section>
-
     <!-- Products from Supabase -->
     <section id="products">
-      <h2>Our Products</h2>
       <div id="products-message">Loading products...</div>
       <div id="product-grid" class="product-grid"></div>
     </section>
@@ -576,9 +531,7 @@
         <div class="contact-card">
           <h3>Gmail Support</h3>
           <p>Send us an email for questions and support.</p>
-          <a href="mailto:blackthanh391@gmail.com">
-            Email Us
-          </a>
+          <a href="mailto:blackthanh391@gmail.com">Email Us</a>
         </div>
 
         <div class="contact-card">
