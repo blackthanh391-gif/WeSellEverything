@@ -25,20 +25,32 @@
       line-height: 1.6;
     }
 
-    /* Header */
+    /* Header with Logo */
     header {
       background: linear-gradient(135deg, #10234d, #1d4ed8);
       color: white;
-      text-align: center;
-      padding: 42px 20px;
+      display: flex;
+      align-items: center;
+      justify-content: flex-start;
+      gap: 20px;
+      text-align: left;
+      padding: 25px 35px;
     }
 
-    header h1 {
+    .header-logo {
+      width: 85px;
+      height: 85px;
+      object-fit: contain;
+      flex-shrink: 0;
+      border-radius: 8px;
+    }
+
+    .header-text h1 {
       font-size: 36px;
-      margin-bottom: 8px;
+      margin-bottom: 5px;
     }
 
-    header p {
+    .header-text p {
       font-size: 17px;
       color: #e0eaff;
     }
@@ -150,7 +162,7 @@
       padding: 20px;
     }
 
-    /* Four products per row on desktop */
+    /* Product grid */
     .product-grid {
       display: grid;
       grid-template-columns: repeat(4, minmax(0, 1fr));
@@ -364,16 +376,30 @@
       .product-grid {
         grid-template-columns: repeat(2, minmax(0, 1fr));
       }
+
+      .dropdown-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
     }
 
     /* Mobile */
     @media (max-width: 600px) {
       header {
-        padding: 30px 15px;
+        padding: 20px 15px;
+        gap: 12px;
       }
 
-      header h1 {
-        font-size: 28px;
+      .header-logo {
+        width: 58px;
+        height: 58px;
+      }
+
+      .header-text h1 {
+        font-size: 22px;
+      }
+
+      .header-text p {
+        font-size: 12px;
       }
 
       nav {
@@ -436,10 +462,18 @@
 
 <body>
 
-  <!-- Website Header -->
+  <!-- Website Header with Logo -->
   <header id="home">
-    <h1>WeSellEverything</h1>
-    <p>Discover Amazing Products Around the World</p>
+    <img
+      src="WeSellEverything1.png"
+      alt="WeSellEverything Logo"
+      class="header-logo"
+    >
+
+    <div class="header-text">
+      <h1>WeSellEverything</h1>
+      <p>Discover Amazing Products Around the World</p>
+    </div>
   </header>
 
   <!-- Main Navigation -->
@@ -648,6 +682,7 @@
         ]);
 
         const categoryMap = {};
+
         categories.forEach(category => {
           categoryMap[category.id] = category.name;
         });
@@ -694,6 +729,7 @@
           }).join("");
 
           const price = Number(product.price);
+
           const formattedPrice = Number.isFinite(price)
             ? "$" + price.toFixed(2)
             : escapeHTML(product.price);
@@ -742,6 +778,7 @@
 
       } catch (error) {
         console.error("Supabase error:", error);
+
         message.textContent =
           "Unable to load products. Please check your Supabase permissions and database settings.";
       }
