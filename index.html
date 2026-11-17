@@ -275,7 +275,7 @@
       font-weight: bold;
     }
 
-    /* SEARCH NEXT TO CONTACT */
+    /* SEARCH */
     .nav-search {
       display: flex;
       align-items: center;
@@ -714,11 +714,9 @@
     <div class="shopping-art" aria-hidden="true">
       <svg viewBox="0 0 560 260" xmlns="http://www.w3.org/2000/svg">
 
-        <!-- Decorative background circles -->
         <circle cx="300" cy="125" r="105" fill="#60e6e8" opacity=".12"/>
         <circle cx="465" cy="90" r="65" fill="#ffffff" opacity=".10"/>
 
-        <!-- Shopping person -->
         <g class="shopper">
           <circle cx="185" cy="55" r="23" fill="#ffd2a6"/>
           <path d="M163 51 Q166 20 194 32 Q211 43 204 59 Q191 42 163 51"
@@ -739,7 +737,6 @@
                 fill="#ffffff"/>
         </g>
 
-        <!-- Shopping cart -->
         <g>
           <path d="M248 92 L270 92 L288 173 L410 173"
                 stroke="#ffffff" stroke-width="8"
@@ -756,7 +753,6 @@
                   fill="#ffbd59" stroke="#ffffff" stroke-width="4"/>
         </g>
 
-        <!-- Shopping bags -->
         <g class="shopping-bag">
           <path d="M304 75 L349 75 L355 112 L298 112 Z"
                 fill="#ff8c42"/>
@@ -771,7 +767,6 @@
                 stroke="#ffffff" stroke-width="4" fill="none"/>
         </g>
 
-        <!-- Parcel -->
         <g class="parcel">
           <rect x="440" y="151" width="66" height="58"
                 rx="6" fill="#f5b942"/>
@@ -781,7 +776,6 @@
                 fill="none" stroke="#ffffff" stroke-width="4"/>
         </g>
 
-        <!-- Decorative stars -->
         <g class="sparkle" fill="#ffe66d">
           <path d="M95 45 L101 60 L116 66 L101 72 L95 87 L89 72 L74 66 L89 60 Z"/>
           <path d="M458 35 L463 47 L475 52 L463 57 L458 69 L453 57 L441 52 L453 47 Z"/>
@@ -789,7 +783,6 @@
           <circle cx="520" cy="115" r="5"/>
         </g>
 
-        <!-- Ground -->
         <path d="M80 225 Q280 210 510 225"
               stroke="#ffffff" stroke-width="4"
               opacity=".5" fill="none"/>
@@ -801,9 +794,9 @@
     </p>
   </header>
 
-  <!-- HORIZONTAL NAVIGATION + SEARCH -->
+  <!-- NAVIGATION -->
   <nav>
-    <a href="#home" onclick="hideContact()">Home</a>
+    <a href="#products" onclick="goHome(); return false;">Home</a>
 
     <details class="categories-dropdown">
       <summary>Categories</summary>
@@ -834,7 +827,6 @@
 
   <main>
 
-    <!-- PRODUCTS -->
     <section id="products">
       <div id="products-message">Loading products...</div>
       <div id="product-grid" class="product-grid"></div>
@@ -900,7 +892,6 @@
 
   </main>
 
-  <!-- FOOTER -->
   <footer>
     <p>&copy; 2026 WeSellEverything. All rights reserved.</p>
   </footer>
@@ -965,6 +956,9 @@
 
         const products = await productsResponse.json();
         const categories = await categoriesResponse.json();
+
+        console.log("Số danh mục tải được:", categories.length);
+        console.table(categories);
 
         const productIds = products.map(product => product.id);
 
@@ -1052,6 +1046,30 @@
     function selectCategory(categoryId) {
       selectedCategory = String(categoryId);
 
+      // Clear old search text before filtering the selected category.
+      document.getElementById("product-search").value = "";
+
+      renderCategories();
+      applyFilters();
+
+      document.querySelector(".categories-dropdown").open = false;
+
+      document.getElementById("products").scrollIntoView({
+        behavior: "smooth",
+        block: "start"
+      });
+    }
+
+    /* HOME: SHOW ALL PRODUCTS */
+    function goHome() {
+      selectedCategory = "all";
+
+      // Clear category and search filters.
+      document.getElementById("product-search").value = "";
+
+      // Hide Contact and show all active products.
+      document.getElementById("contact").style.display = "none";
+
       renderCategories();
       applyFilters();
 
@@ -1099,6 +1117,14 @@
 
         if (allProducts.length === 0) {
           message.textContent = "No products available yet.";
+        } else if (selectedCategory !== "all") {
+          const selected = allCategories.find(
+            category => String(category.id) === String(selectedCategory)
+          );
+
+          message.textContent = selected
+            ? `No products are assigned to "${selected.name}" yet. Check the category_id of your products in Supabase.`
+            : "No matching products found. Try another category.";
         } else {
           message.textContent =
             "No matching products found. Try another search or category.";
