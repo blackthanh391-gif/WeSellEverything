@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -340,7 +339,7 @@
 
     .product-grid {
       display: grid;
-      /* Desktop: 4 columns. 8 products will appear in 2 rows. */
+      /* Desktop: 4 columns. With 8 products, they appear in 2 rows. */
       grid-template-columns: repeat(4, minmax(0, 1fr));
       gap: 18px;
       align-items: stretch;
@@ -694,6 +693,156 @@
         animation: none !important;
       }
     }
+
+    /* COMPACT DESKTOP LAYOUT - keeps the existing tablet/mobile design */
+    @media (min-width: 901px) {
+      header {
+        min-height: 190px;
+        padding: 12px 18px;
+      }
+
+      .brand {
+        top: 5px;
+        left: 12px;
+        gap: 10px;
+      }
+
+      .header-logo {
+        width: 135px;
+        height: 135px;
+      }
+
+      .brand h1 {
+        font-size: clamp(30px, 3vw, 43px);
+        line-height: 1.12;
+      }
+
+      .header-slogan {
+        font-size: 14px;
+        margin-bottom: 3px;
+      }
+
+      .shopping-art {
+        width: min(38%, 390px);
+        height: 135px;
+        right: 2%;
+        bottom: 5px;
+      }
+
+      nav {
+        min-height: 52px;
+        padding: 6px 16px;
+        gap: 5px;
+      }
+
+      nav > a,
+      .categories-dropdown summary {
+        font-size: 13px;
+        padding: 7px 9px;
+      }
+
+      #product-search {
+        padding: 8px 10px;
+        font-size: 13px;
+      }
+
+      .nav-search button {
+        padding: 8px 12px;
+        font-size: 13px;
+      }
+
+      main {
+        margin: 12px auto 28px;
+        padding: 0 18px;
+      }
+
+      #products {
+        scroll-margin-top: 65px;
+      }
+
+      .product-grid {
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+        gap: 12px;
+        align-items: stretch;
+      }
+
+      .product-card {
+        min-height: 330px;
+        height: auto;
+        padding: 9px;
+        border-radius: 9px;
+      }
+
+      .product-main-image {
+        height: 112px;
+        flex: 0 0 112px;
+        border-radius: 6px;
+      }
+
+      .product-thumbnails {
+        min-height: 38px;
+        max-height: 38px;
+        padding: 3px 0;
+        gap: 5px;
+      }
+
+      .product-thumbnails img {
+        width: 32px;
+        height: 32px;
+        border-width: 1px;
+        border-radius: 4px;
+      }
+
+      .product-category {
+        font-size: 10px;
+        line-height: 1.3;
+        margin-top: 3px;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
+
+      .product-card h3 {
+        font-size: 13px;
+        line-height: 1.3;
+        margin: 3px 0;
+        display: -webkit-box;
+        -webkit-box-orient: vertical;
+        -webkit-line-clamp: 2;
+        overflow: hidden;
+        min-height: 34px;
+      }
+
+      .product-description {
+        font-size: 10px;
+        line-height: 1.35;
+        margin: 3px 0;
+        display: -webkit-box;
+        -webkit-box-orient: vertical;
+        -webkit-line-clamp: 2;
+        overflow: hidden;
+        min-height: 27px;
+      }
+
+      .product-price {
+        font-size: 16px;
+        line-height: 1.3;
+        padding-top: 5px;
+      }
+
+      .product-links {
+        gap: 5px;
+        margin-top: 7px;
+      }
+
+      .product-buy-button {
+        font-size: 10px;
+        line-height: 1.25;
+        padding: 6px 5px;
+        border-radius: 5px;
+      }
+    }
+
   </style>
 </head>
 
@@ -715,6 +864,7 @@
     <div class="shopping-art" aria-hidden="true">
       <svg viewBox="0 0 560 260" xmlns="http://www.w3.org/2000/svg">
 
+        <!-- Decorative background circles -->
         <circle cx="300" cy="125" r="105" fill="#60e6e8" opacity=".12"/>
         <circle cx="465" cy="90" r="65" fill="#ffffff" opacity=".10"/>
 
@@ -789,6 +939,7 @@
           <circle cx="520" cy="115" r="5"/>
         </g>
 
+        <!-- Ground -->
         <path d="M80 225 Q280 210 510 225"
               stroke="#ffffff" stroke-width="4"
               opacity=".5" fill="none"/>
@@ -800,7 +951,7 @@
     </p>
   </header>
 
-  <!-- NAVIGATION -->
+  <!-- HORIZONTAL NAVIGATION + SEARCH -->
   <nav>
     <a href="#products" onclick="goHome(); return false;">Home</a>
 
@@ -965,7 +1116,7 @@
         const products = await productsResponse.json();
         const categories = await categoriesResponse.json();
 
-        console.log("Categories loaded:", categories.length);
+        console.log("Số danh mục tải được:", categories.length);
         console.table(categories);
 
         const productIds = products.map(product => product.id);
@@ -1015,18 +1166,24 @@
       }
     }
 
-    /* RENDER CATEGORY MENU */
+    /* AUTOMATIC CATEGORY MENU */
     function renderCategories() {
       const menu = document.getElementById("category-menu");
 
-      const categoryButtons = allCategories.map(category => {
-        const isActive =
-          String(category.id) === String(selectedCategory);
+      if (
+        selectedCategory !== "all" &&
+        !allCategories.some(
+          category => String(category.id) === String(selectedCategory)
+        )
+      ) {
+        selectedCategory = "all";
+      }
 
+      const categoryButtons = allCategories.map(category => {
         return `
           <button
             type="button"
-            class="${isActive ? "active" : ""}"
+            class="${String(category.id) === String(selectedCategory) ? "active" : ""}"
             onclick="selectCategory('${escapeHTML(category.id)}')">
             ${escapeHTML(category.name)}
           </button>
@@ -1048,7 +1205,7 @@
     function selectCategory(categoryId) {
       selectedCategory = String(categoryId);
 
-      // Clear search when selecting a category.
+      // Clear an old search so it does not hide products in the chosen category.
       document.getElementById("product-search").value = "";
 
       renderCategories();
@@ -1066,7 +1223,10 @@
     function goHome() {
       selectedCategory = "all";
 
+      // Clear both category and search filters.
       document.getElementById("product-search").value = "";
+
+      // Hide Contact if it was opened, then show every active product.
       document.getElementById("contact").style.display = "none";
 
       renderCategories();
@@ -1080,7 +1240,7 @@
       });
     }
 
-    /* SEARCH AND CATEGORY FILTER */
+    /* SEARCH + CATEGORY FILTER */
     function applyFilters() {
       const searchText = document
         .getElementById("product-search")
@@ -1104,28 +1264,28 @@
       renderCategories();
     }
 
-    /* RENDER PRODUCT CARDS */
+    /* RENDER PRODUCTS */
     function renderProducts(productsToShow = allProducts) {
       const grid = document.getElementById("product-grid");
       const message = document.getElementById("products-message");
 
-      if (productsToShow.length === 0) {
+      const products = productsToShow;
+
+      if (products.length === 0) {
         grid.innerHTML = "";
 
         if (allProducts.length === 0) {
           message.textContent = "No products available yet.";
         } else if (selectedCategory !== "all") {
           const selected = allCategories.find(
-            category =>
-              String(category.id) === String(selectedCategory)
+            category => String(category.id) === String(selectedCategory)
           );
-
           message.textContent = selected
-            ? `No products are assigned to "${selected.name}" yet. Check category_id in Supabase.`
-            : "No matching products found.";
+            ? `No products are assigned to "${selected.name}" yet. Check the category_id of your products in Supabase.`
+            : "No matching products found. Try another category.";
         } else {
           message.textContent =
-            "No matching products found. Try another search.";
+            "No matching products found. Try another search or category.";
         }
 
         return;
@@ -1136,19 +1296,15 @@
       const categoryMap = {};
 
       allCategories.forEach(category => {
-        categoryMap[String(category.id)] = category.name;
+        categoryMap[category.id] = category.name;
       });
 
-      grid.innerHTML = productsToShow.map(product => {
+      grid.innerHTML = products.map(product => {
         const productImages = allImages
-          .filter(image =>
-            String(image.product_id) === String(product.id)
-          );
+          .filter(image => image.product_id === product.id);
 
         const productLinks = allLinks
-          .filter(link =>
-            String(link.product_id) === String(product.id)
-          );
+          .filter(link => link.product_id === product.id);
 
         const mainImage = productImages[0]?.image_url || "";
 
@@ -1169,9 +1325,7 @@
         const buyButtons = productLinks.map(link => {
           if (!link.url) return "";
 
-          const platform = escapeHTML(
-            link.platform || "Visit Store"
-          );
+          const platform = escapeHTML(link.platform || "Visit Store");
 
           return `
             <a
@@ -1179,7 +1333,7 @@
               href="${escapeHTML(link.url)}"
               target="_blank"
               rel="noopener noreferrer">
-              Click &amp; Buy - ${platform}
+              Click & Buy - ${platform}
             </a>
           `;
         }).join("");
@@ -1190,25 +1344,18 @@
           ? "$" + price.toFixed(2)
           : escapeHTML(product.price);
 
-        const categoryName =
-          categoryMap[String(product.category_id)] || "Uncategorized";
-
         return `
           <article class="product-card">
 
             ${
               mainImage
-                ? `
-                  <img
+                ? `<img
                     class="product-main-image"
                     src="${escapeHTML(mainImage)}"
                     alt="${escapeHTML(product.name)}"
                     loading="lazy"
-                  >
-                `
-                : `
-                  <div class="product-main-image"></div>
-                `
+                  >`
+                : `<div class="product-main-image"></div>`
             }
 
             <div class="product-thumbnails">
@@ -1216,7 +1363,7 @@
             </div>
 
             <p class="product-category">
-              ${escapeHTML(categoryName)}
+              ${escapeHTML(categoryMap[product.category_id] || "Uncategorized")}
             </p>
 
             <h3>${escapeHTML(product.name)}</h3>
@@ -1246,7 +1393,7 @@
         }
       });
 
-    /* CHANGE MAIN IMAGE BY CLICKING THUMBNAIL */
+    /* THUMBNAIL CLICK */
     document.addEventListener("click", function(event) {
       const thumbnail = event.target.closest(".product-thumbnail");
 
@@ -1276,12 +1423,17 @@
 
     function hideContact() {
       document.getElementById("contact").style.display = "none";
+
+      window.scrollTo({
+        top: 0,
+        behavior: "smooth"
+      });
     }
 
     /* INITIAL LOAD */
     loadProducts();
 
-    /* RELOAD DATA EVERY 60 SECONDS */
+    /* REFRESH DATA EVERY 60 SECONDS */
     setInterval(function() {
       loadProducts();
     }, 60000);
