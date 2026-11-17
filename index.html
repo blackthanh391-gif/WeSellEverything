@@ -442,8 +442,6 @@
     .product-buy-button:hover {
       background: #e67800;
     }
-</style>
-</head>
 
     /* ABOUT */
     #about {
@@ -717,7 +715,6 @@
     <div class="shopping-art" aria-hidden="true">
       <svg viewBox="0 0 560 260" xmlns="http://www.w3.org/2000/svg">
 
-        <!-- Decorative background circles -->
         <circle cx="300" cy="125" r="105" fill="#60e6e8" opacity=".12"/>
         <circle cx="465" cy="90" r="65" fill="#ffffff" opacity=".10"/>
 
@@ -792,7 +789,6 @@
           <circle cx="520" cy="115" r="5"/>
         </g>
 
-        <!-- Ground -->
         <path d="M80 225 Q280 210 510 225"
               stroke="#ffffff" stroke-width="4"
               opacity=".5" fill="none"/>
@@ -804,7 +800,7 @@
     </p>
   </header>
 
-  <!-- HORIZONTAL NAVIGATION + SEARCH -->
+  <!-- NAVIGATION -->
   <nav>
     <a href="#products" onclick="goHome(); return false;">Home</a>
 
@@ -969,7 +965,7 @@
         const products = await productsResponse.json();
         const categories = await categoriesResponse.json();
 
-        console.log("Số danh mục tải được:", categories.length);
+        console.log("Categories loaded:", categories.length);
         console.table(categories);
 
         const productIds = products.map(product => product.id);
@@ -1019,24 +1015,18 @@
       }
     }
 
-    /* AUTOMATIC CATEGORY MENU */
+    /* RENDER CATEGORY MENU */
     function renderCategories() {
       const menu = document.getElementById("category-menu");
 
-      if (
-        selectedCategory !== "all" &&
-        !allCategories.some(
-          category => String(category.id) === String(selectedCategory)
-        )
-      ) {
-        selectedCategory = "all";
-      }
-
       const categoryButtons = allCategories.map(category => {
+        const isActive =
+          String(category.id) === String(selectedCategory);
+
         return `
           <button
             type="button"
-            class="${String(category.id) === String(selectedCategory) ? "active" : ""}"
+            class="${isActive ? "active" : ""}"
             onclick="selectCategory('${escapeHTML(category.id)}')">
             ${escapeHTML(category.name)}
           </button>
@@ -1058,7 +1048,7 @@
     function selectCategory(categoryId) {
       selectedCategory = String(categoryId);
 
-      // Clear an old search so it does not hide products in the chosen category.
+      // Clear search when selecting a category.
       document.getElementById("product-search").value = "";
 
       renderCategories();
@@ -1076,10 +1066,7 @@
     function goHome() {
       selectedCategory = "all";
 
-      // Clear both category and search filters.
       document.getElementById("product-search").value = "";
-
-      // Hide Contact if it was opened, then show every active product.
       document.getElementById("contact").style.display = "none";
 
       renderCategories();
@@ -1093,7 +1080,7 @@
       });
     }
 
-    /* SEARCH + CATEGORY FILTER */
+    /* SEARCH AND CATEGORY FILTER */
     function applyFilters() {
       const searchText = document
         .getElementById("product-search")
@@ -1117,28 +1104,28 @@
       renderCategories();
     }
 
-    /* RENDER PRODUCTS */
+    /* RENDER PRODUCT CARDS */
     function renderProducts(productsToShow = allProducts) {
       const grid = document.getElementById("product-grid");
       const message = document.getElementById("products-message");
 
-      const products = productsToShow;
-
-      if (products.length === 0) {
+      if (productsToShow.length === 0) {
         grid.innerHTML = "";
 
         if (allProducts.length === 0) {
           message.textContent = "No products available yet.";
         } else if (selectedCategory !== "all") {
           const selected = allCategories.find(
-            category => String(category.id) === String(selectedCategory)
+            category =>
+              String(category.id) === String(selectedCategory)
           );
+
           message.textContent = selected
-            ? `No products are assigned to "${selected.name}" yet. Check the category_id of your products in Supabase.`
-            : "No matching products found. Try another category.";
+            ? `No products are assigned to "${selected.name}" yet. Check category_id in Supabase.`
+            : "No matching products found.";
         } else {
           message.textContent =
-            "No matching products found. Try another search or category.";
+            "No matching products found. Try another search.";
         }
 
         return;
@@ -1149,15 +1136,19 @@
       const categoryMap = {};
 
       allCategories.forEach(category => {
-        categoryMap[category.id] = category.name;
+        categoryMap[String(category.id)] = category.name;
       });
 
-      grid.innerHTML = products.map(product => {
+      grid.innerHTML = productsToShow.map(product => {
         const productImages = allImages
-          .filter(image => image.product_id === product.id);
+          .filter(image =>
+            String(image.product_id) === String(product.id)
+          );
 
         const productLinks = allLinks
-          .filter(link => link.product_id === product.id);
+          .filter(link =>
+            String(link.product_id) === String(product.id)
+          );
 
         const mainImage = productImages[0]?.image_url || "";
 
@@ -1178,7 +1169,9 @@
         const buyButtons = productLinks.map(link => {
           if (!link.url) return "";
 
-          const platform = escapeHTML(link.platform || "Visit Store");
+          const platform = escapeHTML(
+            link.platform || "Visit Store"
+          );
 
           return `
             <a
@@ -1186,7 +1179,7 @@
               href="${escapeHTML(link.url)}"
               target="_blank"
               rel="noopener noreferrer">
-              Click & Buy - ${platform}
+              Click &amp; Buy - ${platform}
             </a>
           `;
         }).join("");
@@ -1197,18 +1190,25 @@
           ? "$" + price.toFixed(2)
           : escapeHTML(product.price);
 
+        const categoryName =
+          categoryMap[String(product.category_id)] || "Uncategorized";
+
         return `
           <article class="product-card">
 
             ${
               mainImage
-                ? `<img
+                ? `
+                  <img
                     class="product-main-image"
                     src="${escapeHTML(mainImage)}"
                     alt="${escapeHTML(product.name)}"
                     loading="lazy"
-                  >`
-                : `<div class="product-main-image"></div>`
+                  >
+                `
+                : `
+                  <div class="product-main-image"></div>
+                `
             }
 
             <div class="product-thumbnails">
@@ -1216,7 +1216,7 @@
             </div>
 
             <p class="product-category">
-              ${escapeHTML(categoryMap[product.category_id] || "Uncategorized")}
+              ${escapeHTML(categoryName)}
             </p>
 
             <h3>${escapeHTML(product.name)}</h3>
@@ -1246,7 +1246,7 @@
         }
       });
 
-    /* THUMBNAIL CLICK */
+    /* CHANGE MAIN IMAGE BY CLICKING THUMBNAIL */
     document.addEventListener("click", function(event) {
       const thumbnail = event.target.closest(".product-thumbnail");
 
@@ -1276,17 +1276,12 @@
 
     function hideContact() {
       document.getElementById("contact").style.display = "none";
-
-      window.scrollTo({
-        top: 0,
-        behavior: "smooth"
-      });
     }
 
     /* INITIAL LOAD */
     loadProducts();
 
-    /* REFRESH DATA EVERY 60 SECONDS */
+    /* RELOAD DATA EVERY 60 SECONDS */
     setInterval(function() {
       loadProducts();
     }, 60000);
