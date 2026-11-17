@@ -275,7 +275,7 @@
       font-weight: bold;
     }
 
-    /* SEARCH */
+    /* SEARCH NEXT TO CONTACT */
     .nav-search {
       display: flex;
       align-items: center;
@@ -340,8 +340,9 @@
 
     .product-grid {
       display: grid;
+      /* Desktop: 4 columns. 8 products will appear in 2 rows. */
       grid-template-columns: repeat(4, minmax(0, 1fr));
-      gap: 22px;
+      gap: 18px;
       align-items: stretch;
     }
 
@@ -349,7 +350,7 @@
       background: white;
       border: 1px solid #e5eaf3;
       border-radius: 12px;
-      padding: 15px;
+      padding: 13px;
       box-shadow: 0 3px 12px rgba(0, 0, 0, 0.05);
       min-width: 0;
       overflow: hidden;
@@ -359,7 +360,7 @@
 
     .product-main-image {
       width: 100%;
-      height: 210px;
+      height: 185px;
       object-fit: contain;
       object-position: center;
       background: #f7f8fa;
@@ -441,6 +442,8 @@
     .product-buy-button:hover {
       background: #e67800;
     }
+</style>
+</head>
 
     /* ABOUT */
     #about {
@@ -714,9 +717,11 @@
     <div class="shopping-art" aria-hidden="true">
       <svg viewBox="0 0 560 260" xmlns="http://www.w3.org/2000/svg">
 
+        <!-- Decorative background circles -->
         <circle cx="300" cy="125" r="105" fill="#60e6e8" opacity=".12"/>
         <circle cx="465" cy="90" r="65" fill="#ffffff" opacity=".10"/>
 
+        <!-- Shopping person -->
         <g class="shopper">
           <circle cx="185" cy="55" r="23" fill="#ffd2a6"/>
           <path d="M163 51 Q166 20 194 32 Q211 43 204 59 Q191 42 163 51"
@@ -737,6 +742,7 @@
                 fill="#ffffff"/>
         </g>
 
+        <!-- Shopping cart -->
         <g>
           <path d="M248 92 L270 92 L288 173 L410 173"
                 stroke="#ffffff" stroke-width="8"
@@ -753,6 +759,7 @@
                   fill="#ffbd59" stroke="#ffffff" stroke-width="4"/>
         </g>
 
+        <!-- Shopping bags -->
         <g class="shopping-bag">
           <path d="M304 75 L349 75 L355 112 L298 112 Z"
                 fill="#ff8c42"/>
@@ -767,6 +774,7 @@
                 stroke="#ffffff" stroke-width="4" fill="none"/>
         </g>
 
+        <!-- Parcel -->
         <g class="parcel">
           <rect x="440" y="151" width="66" height="58"
                 rx="6" fill="#f5b942"/>
@@ -776,6 +784,7 @@
                 fill="none" stroke="#ffffff" stroke-width="4"/>
         </g>
 
+        <!-- Decorative stars -->
         <g class="sparkle" fill="#ffe66d">
           <path d="M95 45 L101 60 L116 66 L101 72 L95 87 L89 72 L74 66 L89 60 Z"/>
           <path d="M458 35 L463 47 L475 52 L463 57 L458 69 L453 57 L441 52 L453 47 Z"/>
@@ -783,6 +792,7 @@
           <circle cx="520" cy="115" r="5"/>
         </g>
 
+        <!-- Ground -->
         <path d="M80 225 Q280 210 510 225"
               stroke="#ffffff" stroke-width="4"
               opacity=".5" fill="none"/>
@@ -794,7 +804,7 @@
     </p>
   </header>
 
-  <!-- NAVIGATION -->
+  <!-- HORIZONTAL NAVIGATION + SEARCH -->
   <nav>
     <a href="#products" onclick="goHome(); return false;">Home</a>
 
@@ -827,6 +837,7 @@
 
   <main>
 
+    <!-- PRODUCTS -->
     <section id="products">
       <div id="products-message">Loading products...</div>
       <div id="product-grid" class="product-grid"></div>
@@ -892,6 +903,7 @@
 
   </main>
 
+  <!-- FOOTER -->
   <footer>
     <p>&copy; 2026 WeSellEverything. All rights reserved.</p>
   </footer>
@@ -1046,7 +1058,7 @@
     function selectCategory(categoryId) {
       selectedCategory = String(categoryId);
 
-      // Clear old search text before filtering the selected category.
+      // Clear an old search so it does not hide products in the chosen category.
       document.getElementById("product-search").value = "";
 
       renderCategories();
@@ -1064,10 +1076,10 @@
     function goHome() {
       selectedCategory = "all";
 
-      // Clear category and search filters.
+      // Clear both category and search filters.
       document.getElementById("product-search").value = "";
 
-      // Hide Contact and show all active products.
+      // Hide Contact if it was opened, then show every active product.
       document.getElementById("contact").style.display = "none";
 
       renderCategories();
@@ -1121,7 +1133,6 @@
           const selected = allCategories.find(
             category => String(category.id) === String(selectedCategory)
           );
-
           message.textContent = selected
             ? `No products are assigned to "${selected.name}" yet. Check the category_id of your products in Supabase.`
             : "No matching products found. Try another category.";
