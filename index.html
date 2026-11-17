@@ -36,6 +36,8 @@
       justify-content: center;
       text-align: center;
       padding: 20px;
+      overflow: hidden;
+      isolation: isolate;
     }
 
     .brand {
@@ -47,6 +49,7 @@
       align-items: center;
       justify-content: flex-start;
       gap: 15px;
+      z-index: 2;
     }
 
     .header-logo {
@@ -71,6 +74,102 @@
       text-align: center;
       width: 100%;
       margin-bottom: 5px;
+      position: relative;
+      z-index: 2;
+    }
+
+    /* ANIMATED SHOPPING BACKGROUND */
+    .shopping-art {
+      position: absolute;
+      right: 3%;
+      bottom: 12px;
+      width: min(48%, 560px);
+      height: 250px;
+      z-index: 1;
+      opacity: 0.9;
+      pointer-events: none;
+    }
+
+    .shopping-art svg {
+      width: 100%;
+      height: 100%;
+      overflow: visible;
+    }
+
+    .shopping-art .shopper {
+      transform-box: fill-box;
+      transform-origin: center bottom;
+      animation: shopper-bounce 2.2s ease-in-out infinite;
+    }
+
+    .shopping-art .shopper-two {
+      animation-delay: 0.7s;
+    }
+
+    .shopping-art .shopping-bag {
+      transform-box: fill-box;
+      transform-origin: center top;
+      animation: bag-swing 2s ease-in-out infinite;
+    }
+
+    .shopping-art .parcel {
+      transform-box: fill-box;
+      transform-origin: center bottom;
+      animation: parcel-bounce 2.5s ease-in-out infinite;
+    }
+
+    .shopping-art .wheel {
+      transform-box: fill-box;
+      transform-origin: center;
+      animation: wheel-spin 3s linear infinite;
+    }
+
+    .shopping-art .sparkle {
+      animation: sparkle 1.8s ease-in-out infinite alternate;
+    }
+
+    @keyframes shopper-bounce {
+      0%, 100% {
+        transform: translateY(0);
+      }
+      50% {
+        transform: translateY(-7px);
+      }
+    }
+
+    @keyframes bag-swing {
+      0%, 100% {
+        transform: rotate(-5deg);
+      }
+      50% {
+        transform: rotate(7deg);
+      }
+    }
+
+    @keyframes parcel-bounce {
+      0%, 100% {
+        transform: translateY(0);
+      }
+      50% {
+        transform: translateY(-5px);
+      }
+    }
+
+    @keyframes wheel-spin {
+      to {
+        transform: rotate(360deg);
+      }
+    }
+
+    @keyframes sparkle {
+      from {
+        opacity: 0.35;
+        transform: scale(0.8);
+      }
+      to {
+        opacity: 1;
+        transform: scale(1.15);
+      }
     }
 
     /* HORIZONTAL NAVIGATION */
@@ -459,6 +558,11 @@
         min-height: 250px;
       }
 
+      .shopping-art {
+        width: 48%;
+        height: 180px;
+      }
+
       nav {
         flex-wrap: nowrap;
         overflow-x: auto;
@@ -511,6 +615,14 @@
       .header-slogan {
         font-size: 11px;
         margin-bottom: 3px;
+      }
+
+      .shopping-art {
+        width: 65%;
+        height: 115px;
+        right: 2%;
+        bottom: 8px;
+        opacity: 0.45;
       }
 
       nav {
@@ -573,6 +685,14 @@
         grid-template-columns: 1fr;
       }
     }
+
+    /* REDUCE MOTION ACCESSIBILITY */
+    @media (prefers-reduced-motion: reduce) {
+      .shopping-art *,
+      .shopping-art {
+        animation: none !important;
+      }
+    }
   </style>
 </head>
 
@@ -580,6 +700,7 @@
 
   <!-- HEADER -->
   <header id="home">
+
     <div class="brand">
       <img
         src="WE%20SELL%20EVERYTHING%20(1).png"
@@ -587,6 +708,92 @@
         class="header-logo"
       >
       <h1>WeSellEverything</h1>
+    </div>
+
+    <!-- ANIMATED SHOPPING ILLUSTRATION -->
+    <div class="shopping-art" aria-hidden="true">
+      <svg viewBox="0 0 560 260" xmlns="http://www.w3.org/2000/svg">
+
+        <!-- Decorative background circles -->
+        <circle cx="300" cy="125" r="105" fill="#60e6e8" opacity=".12"/>
+        <circle cx="465" cy="90" r="65" fill="#ffffff" opacity=".10"/>
+
+        <!-- Shopping person -->
+        <g class="shopper">
+          <circle cx="185" cy="55" r="23" fill="#ffd2a6"/>
+          <path d="M163 51 Q166 20 194 32 Q211 43 204 59 Q191 42 163 51"
+                fill="#27324d"/>
+          <path d="M165 84 Q185 72 207 87 L220 153 L155 153 Z"
+                fill="#ffb347"/>
+          <path d="M163 94 L132 137 L143 144 L177 112"
+                fill="#ffd2a6"/>
+          <path d="M205 96 L230 127 L220 136 L195 115"
+                fill="#ffd2a6"/>
+          <path d="M166 151 L160 211 L178 211 L190 157"
+                fill="#263b65"/>
+          <path d="M194 151 L203 211 L221 211 L211 151"
+                fill="#263b65"/>
+          <path d="M155 211 L181 211 L180 220 L149 220"
+                fill="#ffffff"/>
+          <path d="M202 211 L224 211 L231 220 L205 220"
+                fill="#ffffff"/>
+        </g>
+
+        <!-- Shopping cart -->
+        <g>
+          <path d="M248 92 L270 92 L288 173 L410 173"
+                stroke="#ffffff" stroke-width="8"
+                fill="none" stroke-linecap="round"/>
+          <path d="M276 112 L420 112 L405 162 L286 162 Z"
+                fill="#60e6e8" stroke="#ffffff" stroke-width="4"/>
+          <path d="M292 124 L400 124"
+                stroke="#ffffff" stroke-width="3" opacity=".7"/>
+          <path d="M297 138 L397 138"
+                stroke="#ffffff" stroke-width="3" opacity=".7"/>
+          <circle class="wheel" cx="306" cy="190" r="11"
+                  fill="#ffbd59" stroke="#ffffff" stroke-width="4"/>
+          <circle class="wheel" cx="393" cy="190" r="11"
+                  fill="#ffbd59" stroke="#ffffff" stroke-width="4"/>
+        </g>
+
+        <!-- Shopping bags -->
+        <g class="shopping-bag">
+          <path d="M304 75 L349 75 L355 112 L298 112 Z"
+                fill="#ff8c42"/>
+          <path d="M315 76 Q315 48 330 48 Q345 48 345 76"
+                stroke="#ffffff" stroke-width="4" fill="none"/>
+        </g>
+
+        <g class="shopping-bag">
+          <path d="M365 82 L402 82 L408 112 L360 112 Z"
+                fill="#a78bfa"/>
+          <path d="M374 82 Q374 61 385 61 Q397 61 397 82"
+                stroke="#ffffff" stroke-width="4" fill="none"/>
+        </g>
+
+        <!-- Parcel -->
+        <g class="parcel">
+          <rect x="440" y="151" width="66" height="58"
+                rx="6" fill="#f5b942"/>
+          <path d="M473 151 V209 M440 177 H506"
+                stroke="#ffffff" stroke-width="4"/>
+          <path d="M456 151 Q473 125 490 151"
+                fill="none" stroke="#ffffff" stroke-width="4"/>
+        </g>
+
+        <!-- Decorative stars -->
+        <g class="sparkle" fill="#ffe66d">
+          <path d="M95 45 L101 60 L116 66 L101 72 L95 87 L89 72 L74 66 L89 60 Z"/>
+          <path d="M458 35 L463 47 L475 52 L463 57 L458 69 L453 57 L441 52 L453 47 Z"/>
+          <circle cx="120" cy="145" r="5"/>
+          <circle cx="520" cy="115" r="5"/>
+        </g>
+
+        <!-- Ground -->
+        <path d="M80 225 Q280 210 510 225"
+              stroke="#ffffff" stroke-width="4"
+              opacity=".5" fill="none"/>
+      </svg>
     </div>
 
     <p class="header-slogan">
