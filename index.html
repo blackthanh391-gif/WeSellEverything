@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -128,36 +129,22 @@
     }
 
     @keyframes shopper-bounce {
-      0%, 100% {
-        transform: translateY(0);
-      }
-      50% {
-        transform: translateY(-7px);
-      }
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-7px); }
     }
 
     @keyframes bag-swing {
-      0%, 100% {
-        transform: rotate(-5deg);
-      }
-      50% {
-        transform: rotate(7deg);
-      }
+      0%, 100% { transform: rotate(-5deg); }
+      50% { transform: rotate(7deg); }
     }
 
     @keyframes parcel-bounce {
-      0%, 100% {
-        transform: translateY(0);
-      }
-      50% {
-        transform: translateY(-5px);
-      }
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-5px); }
     }
 
     @keyframes wheel-spin {
-      to {
-        transform: rotate(360deg);
-      }
+      to { transform: rotate(360deg); }
     }
 
     @keyframes sparkle {
@@ -274,7 +261,7 @@
       font-weight: bold;
     }
 
-    /* SEARCH NEXT TO CONTACT */
+    /* SEARCH */
     .nav-search {
       display: flex;
       align-items: center;
@@ -326,7 +313,6 @@
       min-height: 400px;
     }
 
-    /* PRODUCTS */
     #products {
       scroll-margin-top: 85px;
     }
@@ -337,9 +323,9 @@
       padding: 20px;
     }
 
+    /* PRODUCTS */
     .product-grid {
       display: grid;
-      /* Desktop: 4 columns. With 8 products, they appear in 2 rows. */
       grid-template-columns: repeat(4, minmax(0, 1fr));
       gap: 18px;
       align-items: stretch;
@@ -440,6 +426,42 @@
 
     .product-buy-button:hover {
       background: #e67800;
+    }
+
+    /* ADSTERRA NATIVE BANNER */
+    .adsterra-native {
+      width: 100%;
+      max-width: 1200px;
+      margin: 18px auto;
+      padding: 12px;
+      box-sizing: border-box;
+      text-align: center;
+      overflow: hidden;
+      background: #fff;
+      border: 1px solid #e5eaf3;
+      border-radius: 10px;
+    }
+
+    .ad-label {
+      color: #888;
+      font-size: 11px;
+      margin-bottom: 8px;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+    }
+
+    /* ADSTERRA 468x60 BANNER */
+    .adsterra-468 {
+      width: 100%;
+      max-width: 468px;
+      min-height: 60px;
+      margin: 25px auto;
+      text-align: center;
+      overflow: hidden;
+    }
+
+    .adsterra-468 iframe {
+      max-width: 100%;
     }
 
     /* ABOUT */
@@ -694,7 +716,7 @@
       }
     }
 
-    /* COMPACT DESKTOP LAYOUT - keeps the existing tablet/mobile design */
+    /* COMPACT DESKTOP LAYOUT */
     @media (min-width: 901px) {
       header {
         min-height: 190px;
@@ -842,7 +864,6 @@
         border-radius: 5px;
       }
     }
-
   </style>
 </head>
 
@@ -850,7 +871,6 @@
 
   <!-- HEADER -->
   <header id="home">
-
     <div class="brand">
       <img
         src="WE%20SELL%20EVERYTHING%20(1).png"
@@ -864,74 +884,46 @@
     <div class="shopping-art" aria-hidden="true">
       <svg viewBox="0 0 560 260" xmlns="http://www.w3.org/2000/svg">
 
-        <!-- Decorative background circles -->
         <circle cx="300" cy="125" r="105" fill="#60e6e8" opacity=".12"/>
         <circle cx="465" cy="90" r="65" fill="#ffffff" opacity=".10"/>
 
-        <!-- Shopping person -->
         <g class="shopper">
           <circle cx="185" cy="55" r="23" fill="#ffd2a6"/>
-          <path d="M163 51 Q166 20 194 32 Q211 43 204 59 Q191 42 163 51"
-                fill="#27324d"/>
-          <path d="M165 84 Q185 72 207 87 L220 153 L155 153 Z"
-                fill="#ffb347"/>
-          <path d="M163 94 L132 137 L143 144 L177 112"
-                fill="#ffd2a6"/>
-          <path d="M205 96 L230 127 L220 136 L195 115"
-                fill="#ffd2a6"/>
-          <path d="M166 151 L160 211 L178 211 L190 157"
-                fill="#263b65"/>
-          <path d="M194 151 L203 211 L221 211 L211 151"
-                fill="#263b65"/>
-          <path d="M155 211 L181 211 L180 220 L149 220"
-                fill="#ffffff"/>
-          <path d="M202 211 L224 211 L231 220 L205 220"
-                fill="#ffffff"/>
+          <path d="M163 51 Q166 20 194 32 Q211 43 204 59 Q191 42 163 51" fill="#27324d"/>
+          <path d="M165 84 Q185 72 207 87 L220 153 L155 153 Z" fill="#ffb347"/>
+          <path d="M163 94 L132 137 L143 144 L177 112" fill="#ffd2a6"/>
+          <path d="M205 96 L230 127 L220 136 L195 115" fill="#ffd2a6"/>
+          <path d="M166 151 L160 211 L178 211 L190 157" fill="#263b65"/>
+          <path d="M194 151 L203 211 L221 211 L211 151" fill="#263b65"/>
+          <path d="M155 211 L181 211 L180 220 L149 220" fill="#ffffff"/>
+          <path d="M202 211 L224 211 L231 220 L205 220" fill="#ffffff"/>
         </g>
 
-        <!-- Shopping cart -->
         <g>
-          <path d="M248 92 L270 92 L288 173 L410 173"
-                stroke="#ffffff" stroke-width="8"
-                fill="none" stroke-linecap="round"/>
-          <path d="M276 112 L420 112 L405 162 L286 162 Z"
-                fill="#60e6e8" stroke="#ffffff" stroke-width="4"/>
-          <path d="M292 124 L400 124"
-                stroke="#ffffff" stroke-width="3" opacity=".7"/>
-          <path d="M297 138 L397 138"
-                stroke="#ffffff" stroke-width="3" opacity=".7"/>
-          <circle class="wheel" cx="306" cy="190" r="11"
-                  fill="#ffbd59" stroke="#ffffff" stroke-width="4"/>
-          <circle class="wheel" cx="393" cy="190" r="11"
-                  fill="#ffbd59" stroke="#ffffff" stroke-width="4"/>
-        </g>
-
-        <!-- Shopping bags -->
-        <g class="shopping-bag">
-          <path d="M304 75 L349 75 L355 112 L298 112 Z"
-                fill="#ff8c42"/>
-          <path d="M315 76 Q315 48 330 48 Q345 48 345 76"
-                stroke="#ffffff" stroke-width="4" fill="none"/>
+          <path d="M248 92 L270 92 L288 173 L410 173" stroke="#ffffff" stroke-width="8" fill="none" stroke-linecap="round"/>
+          <path d="M276 112 L420 112 L405 162 L286 162 Z" fill="#60e6e8" stroke="#ffffff" stroke-width="4"/>
+          <path d="M292 124 L400 124" stroke="#ffffff" stroke-width="3" opacity=".7"/>
+          <path d="M297 138 L397 138" stroke="#ffffff" stroke-width="3" opacity=".7"/>
+          <circle class="wheel" cx="306" cy="190" r="11" fill="#ffbd59" stroke="#ffffff" stroke-width="4"/>
+          <circle class="wheel" cx="393" cy="190" r="11" fill="#ffbd59" stroke="#ffffff" stroke-width="4"/>
         </g>
 
         <g class="shopping-bag">
-          <path d="M365 82 L402 82 L408 112 L360 112 Z"
-                fill="#a78bfa"/>
-          <path d="M374 82 Q374 61 385 61 Q397 61 397 82"
-                stroke="#ffffff" stroke-width="4" fill="none"/>
+          <path d="M304 75 L349 75 L355 112 L298 112 Z" fill="#ff8c42"/>
+          <path d="M315 76 Q315 48 330 48 Q345 48 345 76" stroke="#ffffff" stroke-width="4" fill="none"/>
         </g>
 
-        <!-- Parcel -->
+        <g class="shopping-bag">
+          <path d="M365 82 L402 82 L408 112 L360 112 Z" fill="#a78bfa"/>
+          <path d="M374 82 Q374 61 385 61 Q397 61 397 82" stroke="#ffffff" stroke-width="4" fill="none"/>
+        </g>
+
         <g class="parcel">
-          <rect x="440" y="151" width="66" height="58"
-                rx="6" fill="#f5b942"/>
-          <path d="M473 151 V209 M440 177 H506"
-                stroke="#ffffff" stroke-width="4"/>
-          <path d="M456 151 Q473 125 490 151"
-                fill="none" stroke="#ffffff" stroke-width="4"/>
+          <rect x="440" y="151" width="66" height="58" rx="6" fill="#f5b942"/>
+          <path d="M473 151 V209 M440 177 H506" stroke="#ffffff" stroke-width="4"/>
+          <path d="M456 151 Q473 125 490 151" fill="none" stroke="#ffffff" stroke-width="4"/>
         </g>
 
-        <!-- Decorative stars -->
         <g class="sparkle" fill="#ffe66d">
           <path d="M95 45 L101 60 L116 66 L101 72 L95 87 L89 72 L74 66 L89 60 Z"/>
           <path d="M458 35 L463 47 L475 52 L463 57 L458 69 L453 57 L441 52 L453 47 Z"/>
@@ -939,10 +931,7 @@
           <circle cx="520" cy="115" r="5"/>
         </g>
 
-        <!-- Ground -->
-        <path d="M80 225 Q280 210 510 225"
-              stroke="#ffffff" stroke-width="4"
-              opacity=".5" fill="none"/>
+        <path d="M80 225 Q280 210 510 225" stroke="#ffffff" stroke-width="4" opacity=".5" fill="none"/>
       </svg>
     </div>
 
@@ -951,7 +940,7 @@
     </p>
   </header>
 
-  <!-- HORIZONTAL NAVIGATION + SEARCH -->
+  <!-- NAVIGATION -->
   <nav>
     <a href="#products" onclick="goHome(); return false;">Home</a>
 
@@ -982,6 +971,16 @@
     </div>
   </nav>
 
+  <!-- ADSTERRA NATIVE BANNER -->
+  <div class="adsterra-native">
+    <div class="ad-label">Advertisement</div>
+
+    <script async="async" data-cfasync="false"
+      src="https://bauval.org/21/e7564bafbd5ec7a073176be67cabfab0"></script>
+
+    <div id="container-e7564bafbd5ec7a073176be67cabfab0"></div>
+  </div>
+
   <main>
 
     <!-- PRODUCTS -->
@@ -989,6 +988,23 @@
       <div id="products-message">Loading products...</div>
       <div id="product-grid" class="product-grid"></div>
     </section>
+
+    <!-- ADSTERRA 468x60 BANNER -->
+    <div class="adsterra-468">
+      <div class="ad-label">Advertisement</div>
+
+      <script>
+        atOptions = {
+          'key': '8ded4f23236f7a06eae663dc2e6c5941',
+          'format': 'iframe',
+          'height': 60,
+          'width': 468,
+          'params': {}
+        };
+      </script>
+
+      <script src="https://bauval.org/22/8ded4f23236f7a06eae663dc2e6c5941"></script>
+    </div>
 
     <!-- ABOUT US -->
     <section id="about">
@@ -1063,9 +1079,9 @@
     const SUPABASE_KEY =
       "sb_publishable_kjdtB8MJrQZYc1e5LISUqg_6imEy3Ea";
 
+    /* PUBLISHABLE KEY */
     const supabaseHeaders = {
-      "apikey": SUPABASE_KEY,
-      "Authorization": "Bearer " + SUPABASE_KEY
+      "apikey": SUPABASE_KEY
     };
 
     /* DATA */
@@ -1205,7 +1221,6 @@
     function selectCategory(categoryId) {
       selectedCategory = String(categoryId);
 
-      // Clear an old search so it does not hide products in the chosen category.
       document.getElementById("product-search").value = "";
 
       renderCategories();
@@ -1223,10 +1238,7 @@
     function goHome() {
       selectedCategory = "all";
 
-      // Clear both category and search filters.
       document.getElementById("product-search").value = "";
-
-      // Hide Contact if it was opened, then show every active product.
       document.getElementById("contact").style.display = "none";
 
       renderCategories();
@@ -1280,6 +1292,7 @@
           const selected = allCategories.find(
             category => String(category.id) === String(selectedCategory)
           );
+
           message.textContent = selected
             ? `No products are assigned to "${selected.name}" yet. Check the category_id of your products in Supabase.`
             : "No matching products found. Try another category.";
